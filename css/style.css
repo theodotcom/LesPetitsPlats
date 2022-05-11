@@ -5,13 +5,13 @@ header img{
     width: 23%;
     padding: 2em;
 }
-
+;
 .research {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
   }
-  
+ ; 
   .research__bar {
     display: flex;
     height: 70px;
