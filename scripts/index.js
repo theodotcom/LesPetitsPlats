@@ -42,13 +42,14 @@ function recipeFactory(data) {
       h2.textContent = name;
       const h3 = document.createElement("h3");
       h3.textContent = "for"+ " " + servings + " " + "people";
-      
+      var myIng = document.createElement("ul") ;
       var ingredients = data['ingredients'];
       console.log(ingredients)
         for (var i = 0; i < ingredients.length; i++) {
             var myPara3 = document.createElement('li');
-            myPara3.textContent = ingredients[i].ingredient;
-            console.log(myPara3);
+// Need to put if ingredients[i].quantity / ingredients[i].unit is undefined => not push
+            myPara3.textContent = ingredients[i].ingredient + " " + ingredients[i].quantity + ingredients[i].unit;
+            myIng.appendChild(myPara3)
          }
       const my2p = document.createElement("p");
       my2p.textContent = time +" "+ "min";
@@ -59,7 +60,7 @@ function recipeFactory(data) {
       article.appendChild(h3);
       article.appendChild(my2p);
       article.appendChild(my3p);
-      article.appendChild(myPara3);
+      article.appendChild(myIng);
 
 
       return article;
