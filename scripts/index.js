@@ -31,7 +31,7 @@ async function init() {
 init();
 
 function recipeFactory(data) {
-    const {name, servings, ingredients, ingredient, quantity, unit} = data;
+    const {name, servings, ingredients, ingredient, quantity, unit, time, description, appliance, ustensils} = data;
     
     function getUserCardDOM() {
       const article = document.createElement("article");
@@ -42,12 +42,17 @@ function recipeFactory(data) {
       h3.textContent = "for"+ " " + servings + " " + "people";
       const my1p = document.createElement("p");
       my1p.textContent = JSON.stringify(ingredients);
+      const my2p = document.createElement("p");
+      my2p.textContent = time +" "+ "min to prepare";
+      const my3p = document.createElement("p");
+      my3p.textContent = description;
       
-     
       article.appendChild(h2);
       article.appendChild(h3);
       article.appendChild(my1p);
-      
+      article.appendChild(my2p);
+      article.appendChild(my3p);
+
       return article;
     }
     return { getUserCardDOM };
