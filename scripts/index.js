@@ -35,7 +35,9 @@ function recipeFactory(data) {
     
     function getUserCardDOM() {
       const article = document.createElement("article");
-   
+      const picture = `assets/logolpp.png`; 
+      const img = document.createElement("img");
+      img.setAttribute("src", picture);
       const h2 = document.createElement("h2");
       h2.textContent = name;
       const h3 = document.createElement("h3");
@@ -43,10 +45,10 @@ function recipeFactory(data) {
       const my1p = document.createElement("p");
       my1p.textContent = JSON.stringify(ingredients);
       const my2p = document.createElement("p");
-      my2p.textContent = time +" "+ "min to prepare";
+      my2p.textContent = time +" "+ "min";
       const my3p = document.createElement("p");
       my3p.textContent = description;
-      
+      article.appendChild(img);
       article.appendChild(h2);
       article.appendChild(h3);
       article.appendChild(my1p);
