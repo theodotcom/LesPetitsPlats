@@ -1,18 +1,26 @@
+let allRecipes = []
+let query = ''
+let ingredients = []
+let appliances = []
+let ustensils = []
+
 async function getRecipes() {
     const fetchData = await fetch('data/recipe.json')
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) =>{
-      return data;})
-    .catch((err) => {
-      console.log(err)
-    })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            return data;
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     return fetchData
 }
 
 async function displayData(recipes) {
     const recipeSection = document.querySelector(".recipe_section");
+    recipeSection.innerHTML = ''
     recipes.forEach((recipe) => {
         const recipeModel = recipeFactory(recipe);
         const userCardDOM = recipeModel.getUserCardDOM();
@@ -20,55 +28,96 @@ async function displayData(recipes) {
     });
 };
 
+function initEventForm(){
+    const researchBar = document.querySelector('.research_bar input')
+    researchBar.addEventListener('input', (e) => {
+        e.preventDefault()
+        if(e.target.value.length < 3){
+            return
+        }
+        query = e.target.value
+        filterRecipes()
+        //query = e.target.query.value
+        //filterRecipes()
+    })
+}
+
 async function init() {
     // Récupère les datas des recettes
-    const { recipes  } = await getRecipes();
-    
-    console.log('all recipes',recipes)
-    
+    const {recipes} = await getRecipes();
+    allRecipes = recipes
+    console.log('all recipes', recipes)
     displayData(recipes);
+    initEventForm()
 };
-init();
 
 function recipeFactory(data) {
     const {name, servings, time, description, appliance, ustensils} = data;
-    
+
     function getUserCardDOM() {
-      const article = document.createElement("article");
-      const picture = `assets/logolpp.png`; 
-      const img = document.createElement("img");
-      img.setAttribute("src", picture);
-      const h2 = document.createElement("h2");
-      h2.textContent = name;
-      const h3 = document.createElement("h3");
-      h3.textContent = "for"+ " " + servings + " " + "people";
-      var myIng = document.createElement("ul") ;
-      var ingredients = data['ingredients'];
-      console.log(ingredients)
+        const article = document.createElement("article");
+        const picture = `assets/logolpp.png`;
+        const img = document.createElement("img");
+        img.setAttribute("src", picture);
+        const h2 = document.createElement("h2");
+        h2.textContent = name;
+        const h3 = document.createElement("h3");
+        h3.textContent = "for" + " " + servings + " " + "people";
+        var myIng = document.createElement("ul");
+        var ingredients = data['ingredients'];
+        console.log(ingredients)
         for (var i = 0; i < ingredients.length; i++) {
             var myPara3 = document.createElement('li');
             if (ingredients[i].ingredient === undefined)
-            ingredients[i].ingredient = '';
-            if(ingredients[i].quantity === undefined)
-            ingredients[i].quantity = '';
-            if(ingredients[i].unit === undefined)
-            ingredients[i].unit = '';
+                ingredients[i].ingredient = '';
+            if (ingredients[i].quantity === undefined)
+                ingredients[i].quantity = '';
+            if (ingredients[i].unit === undefined)
+                ingredients[i].unit = '';
             myPara3.textContent = ingredients[i].ingredient + " " + ingredients[i].quantity + " " + ingredients[i].unit;
             myIng.appendChild(myPara3)
-         }
-      const my2p = document.createElement("p");
-      my2p.textContent = time +" "+ "min";
-      const my3p = document.createElement("p");
-      my3p.textContent = description;
-      article.appendChild(img);
-      article.appendChild(h2);
-      article.appendChild(h3);
-      article.appendChild(my2p);
-      article.appendChild(my3p);
-      article.appendChild(myIng);
+        }
+        const my2p = document.createElement("p");
+        my2p.textContent = time + " " + "min";
+        const my3p = document.createElement("p");
+        my3p.textContent = description;
+        article.appendChild(img);
+        article.appendChild(h2);
+        article.appendChild(h3);
+        article.appendChild(my2p);
+        article.appendChild(my3p);
+        article.appendChild(myIng);
 
 
-      return article;
+        return article;
     }
-    return { getUserCardDOM };
-  }
+
+    return {getUserCardDOM};
+}
+
+function filterByIngredient(recipe) {
+    return recipe.ingredients.filter(ingredient => {
+        return ingredients.includes(ingredient.ingredient)
+    }).length > 0
+}
+
+function filterByUstensil(recipe) {
+    return recipe.ustensils.filter(ustensil => ustensils.includes(ustensil)).length > 0
+}
+
+function filterByAppliance(recipe) {
+    return appliances.includes(recipe.appliance)
+}
+
+function filterByName(recipe) {
+    return recipe.name.includes(query)
+}
+
+function filterRecipes() {
+    const recipes = allRecipes.filter((recipe) => {
+        return filterByName(recipe)
+    })
+    displayData(recipes)
+}
+
+init();
