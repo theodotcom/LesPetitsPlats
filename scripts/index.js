@@ -47,8 +47,13 @@ function recipeFactory(data) {
       console.log(ingredients)
         for (var i = 0; i < ingredients.length; i++) {
             var myPara3 = document.createElement('li');
-// Need to put if ingredients[i].quantity / ingredients[i].unit is undefined => not push
-            myPara3.textContent = ingredients[i].ingredient + " " + ingredients[i].quantity + ingredients[i].unit;
+            if (ingredients[i].ingredient === undefined)
+            ingredients[i].ingredient = '';
+            if(ingredients[i].quantity === undefined)
+            ingredients[i].quantity = '';
+            if(ingredients[i].unit === undefined)
+            ingredients[i].unit = '';
+            myPara3.textContent = ingredients[i].ingredient + " " + ingredients[i].quantity + " " + ingredients[i].unit;
             myIng.appendChild(myPara3)
          }
       const my2p = document.createElement("p");
