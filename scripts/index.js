@@ -36,6 +36,7 @@ function initEventForm(){
             return
         }
         query = e.target.value
+        console.log (query)
         filterRecipes()
         //query = e.target.query.value
         //filterRecipes()
@@ -48,6 +49,7 @@ async function init() {
     allRecipes = recipes
     console.log('all recipes', recipes)
     displayData(recipes);
+    console.log(recipes);
     initEventForm()
 };
 
@@ -65,7 +67,6 @@ function recipeFactory(data) {
         h3.textContent = "for" + " " + servings + " " + "people";
         var myIng = document.createElement("ul");
         var ingredients = data['ingredients'];
-        console.log(ingredients)
         for (var i = 0; i < ingredients.length; i++) {
             var myPara3 = document.createElement('li');
             if (ingredients[i].ingredient === undefined)
@@ -111,13 +112,43 @@ function filterByAppliance(recipe) {
 
 function filterByName(recipe) {
     return recipe.name.includes(query)
+
 }
+
 
 function filterRecipes() {
     const recipes = allRecipes.filter((recipe) => {
-        return filterByName(recipe)
+        return filterByIngredient(recipe) &&
+            filterByAppliance(recipe) &&
+            filterByUstensil(recipe) &&
+            filterByName(recipe)
     })
     displayData(recipes)
 }
+
+
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+      txtValue = a[i].textContent || a[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = "";
+      } else {
+        a[i].style.display = "none";
+      }
+    }
+  }
+
 
 init();

@@ -2,38 +2,85 @@
 <html lang="en">
   <head>
     <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" >
-    <script src="https://kit.fontawesome.com/1f5306553e.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/1f5306553e.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Les petits plats</title>
   </head>
   <body>
     <header>
-        <img src="assets/logolpp.png" class="logo" alt="LPP logo" />
+      <img src="assets/logolpp.png" class="logo" alt="LPP logo" />
     </header>
     <main id="main">
-        <div class="research">
-			<form class="research_bar">
-				<input
-					class="research_bar_input"
-					placeholder="Rechercher une recette"
-					type="search"
-                    name="query"
-				/>
-				<button class="research_bar_submit" type="submit">
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</button>
-			</form>
+      <div class="research">
+        <form class="research_bar">
+          <input
+            class="research_bar_input"
+            placeholder="Rechercher une recette"
+            type="search"
+            name="query"
+          />
+          <button class="research_bar_submit" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
 
-		</div>
+        <div class="dropdown_ingredients">
+            <button onclick="myFunction()" class="dropbtn">Ingredients</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input type="text" placeholder="Ingredients" id="myInput" onkeyup="filterFunction()">
+              <a href="#about">About</a>
+              <a href="#base">Base</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
+              <a href="#custom">Custom</a>
+              <a href="#support">Support</a>
+              <a href="#tools">Tools</a>
+            </div>
+          </div>
+        
+          <div class="dropdown_appareils">
+            <button onclick="myFunction()" class="dropbtn">Appareils</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input type="text" placeholder="Appareils" id="myInput" onkeyup="filterFunction()">
+              <a href="#about">About</a>
+              <a href="#base">Base</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
+              <a href="#custom">Custom</a>
+              <a href="#support">Support</a>
+              <a href="#tools">Tools</a>
+            </div>
+          </div>
+        
+          <div class="dropdown_ustensiles">
+            <button onclick="myFunction()" class="dropbtn">Ustensiles</button>
+            <div id="myDropdown" class="dropdown-content">
+              <input type="text" placeholder="Ustensiles" id="myInput" onkeyup="filterFunction()">
+              <a href="#about">About</a>
+              <a href="#base">Base</a>
+              <a href="#blog">Blog</a>
+              <a href="#contact">Contact</a>
+              <a href="#custom">Custom</a>
+              <a href="#support">Support</a>
+              <a href="#tools">Tools</a>
+            </div>
+          </div>
 
-    <section>
-       <div class="recipe_section"></div>
-    </section>
+      </div>
 
+      <section>
+        <div class="recipe_section"></div>
+      </section>
     </main>
-    <script type='module' src="scripts/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
   </body>
 </html>
