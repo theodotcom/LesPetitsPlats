@@ -125,16 +125,19 @@ function filterRecipes() {
     displayData(recipes)
 }
 
-
-
-
-
-
     // Get the button, and when the user clicks on it, execute myFunction
     document.getElementById("dropbtn").onclick = function myFunction() {
       document.getElementById("myDropdown").classList.toggle("show");
     }
   
+   // Same for Appareils
+   document.getElementById("dropbtn1").onclick = function myFunction() {
+    document.getElementById("myDropdown1").classList.toggle("show");
+  }
+   //Same for Ustensiles
+   document.getElementById("dropbtn2").onclick = function myFunction() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+  }
 
 
   function filterFunction() {

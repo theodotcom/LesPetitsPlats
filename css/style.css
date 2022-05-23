@@ -20,7 +20,7 @@ header img{
  
 /* Dropdown Button */
 #dropbtn {
-    background-color: #04AA6D;
+    background-color:royalblue;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -28,9 +28,35 @@ header img{
     cursor: pointer;
   }
   
+  #dropbtn1 {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #dropbtn2 {
+    background-color: red;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
   /* Dropdown button on hover & focus */
   #dropbtn:hover, #dropbtn:focus {
+    background-color: rgb(42, 75, 173);
+  }
+
+  #dropbtn1:hover, #dropbtn1:focus{
     background-color: #3e8e41;
+  }
+
+  #dropbtn2:hover, #dropbtn2:focus {
+    background-color:rgba(255, 0, 0, 0.699);
   }
   
   /* The search field */
@@ -49,7 +75,7 @@ header img{
   #myInput:focus {outline: 3px solid #ddd;}
   
   /* The container <div> - needed to position the dropdown content */
-  #dropdown {
+  #dropdown, #dropdown1, #dropdown2 {
     position: relative;
     display: inline-block;
   }
@@ -77,3 +103,8 @@ header img{
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
+
+  /* Dropdown Container */
+  .dropdown_container {
+      display: flex;
+  }
