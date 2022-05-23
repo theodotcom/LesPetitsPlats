@@ -6,6 +6,11 @@ header img{
     padding: 2em;
 }
 
+article img{
+    width: 10%;
+    padding: 1em;
+}
+
 .research {
     display: flex;
     flex-direction: column;
