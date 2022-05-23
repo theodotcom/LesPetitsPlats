@@ -49,7 +49,6 @@ async function init() {
     allRecipes = recipes
     console.log('all recipes', recipes)
     displayData(recipes);
-    console.log(recipes);
     initEventForm()
 };
 
@@ -128,12 +127,16 @@ function filterRecipes() {
 
 
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+
+
+
+    // Get the button, and when the user clicks on it, execute myFunction
+    document.getElementById("dropbtn").onclick = function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
   
+
+
   function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
@@ -150,5 +153,4 @@ function myFunction() {
     }
   }
 
-
-init();
+  init();
