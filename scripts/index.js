@@ -3,6 +3,7 @@ let query = ''
 let ingredients = []
 let appliances = []
 let ustensils = []
+let description = []
 
 async function getRecipes() {
     const fetchData = await fetch('data/recipe.json')
@@ -101,13 +102,10 @@ function filterByIngredient(recipe) {
     }).length > 0
 }
 
-function filterByUstensil(recipe) {
-    return recipe.ustensils.filter(ustensil => ustensils.includes(ustensil)).length > 0
+function filterByDescription(recipe) {
+    return recipe.descriptions.filter(description => descriptions.includes(description)).length > 0
 }
 
-function filterByAppliance(recipe) {
-    return appliances.includes(recipe.appliance)
-}
 
 function filterByName(recipe) {
     return recipe.name.includes(query)
@@ -118,8 +116,7 @@ function filterByName(recipe) {
 function filterRecipes() {
     const recipes = allRecipes.filter((recipe) => {
         return filterByIngredient(recipe) &&
-            filterByAppliance(recipe) &&
-            filterByUstensil(recipe) &&
+            filterByDescription(recipe) &&
             filterByName(recipe)
     })
     displayData(recipes)
