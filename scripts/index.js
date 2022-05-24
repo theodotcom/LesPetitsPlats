@@ -18,6 +18,7 @@ async function getRecipes() {
         })
     return fetchData
 }
+ 
 
 async function displayData(recipes) {
     const recipeSection = document.querySelector(".recipe_section");
@@ -44,8 +45,7 @@ function initEventForm(){
         description = e.target.value
         ingredients = [e.target.value]
         filterRecipes()
-        //query = e.target.query.value
-        //filterRecipes()
+        
     })
 }
 
@@ -57,11 +57,13 @@ async function init() {
     displayData(recipes);
     initEventForm()
     filterRecipes()
+    console.log('ntm', recipes)
+    ingredientsTags()
 };
+
 
 function recipeFactory(data) {
     const {name, servings, time, description, appliance, ustensils} = data;
-
     function getUserCardDOM() {
         const article = document.createElement("article");
         const picture = `assets/logolpp.png`;
@@ -150,6 +152,10 @@ function filterRecipes() {
             filterByAppliance(recipe)
     })
     displayData(recipes)
+    console.log('data to collect', recipes)
+    ingredients.push(...recipes)
+    console.log('new array', ingredients)
+    
 }
 
     // Get the button, and when the user clicks on it, execute myFunction
@@ -165,24 +171,21 @@ function filterRecipes() {
    document.getElementById("dropbtn2").onclick = function myFunction() {
     document.getElementById("myDropdown2").classList.toggle("show");
   }
+  
 
+function ingredientsTags(){
+    for (var i = 0; i < ingredients.length; i++) {
+    var sel = document.createElement("option");
+    sel.innerHTML = ingredients[i].ingredient ;
+    sel.value  = ingredients[i].ingredient ;
+    document.getElementById("state").appendChild(sel);}
+}
 
-  function filterFunction() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
-
+  
+  
+  
+  
+  
   init();
 
 
