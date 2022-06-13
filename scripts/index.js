@@ -19,7 +19,6 @@ async function getRecipes() {
     return fetchData
 }
  
-
 async function displayData(recipes) {
     const recipeSection = document.querySelector(".recipe_section");
     recipeSection.innerHTML = ''
@@ -28,7 +27,7 @@ async function displayData(recipes) {
         const userCardDOM = recipeModel.getUserCardDOM();
         recipeSection.appendChild(userCardDOM);
     });
-};
+}
 
 function initEventForm(){
     const researchBar = document.querySelector('.research_bar input')
@@ -53,17 +52,17 @@ async function init() {
     // Récupère les datas des recettes
     const {recipes} = await getRecipes();
     allRecipes = recipes
+
     console.log('all recipes', recipes)
     displayData(recipes);
     initEventForm()
     filterRecipes()
-    console.log('ntm', recipes)
     ingredientsTags()
-};
+}
 
 
 function recipeFactory(data) {
-    const {name, servings, time, description, appliance, ustensils} = data;
+    const {name, servings, time, description} = data;
     function getUserCardDOM() {
         const article = document.createElement("article");
         const picture = `assets/logolpp.png`;
@@ -104,12 +103,13 @@ function recipeFactory(data) {
     return {getUserCardDOM};
 }
 
+
+
 function filterByIngredient(recipe) {
     if(ingredients.length === 0){
         return true
     }
     return recipe.ingredients.filter(ingredient => {
-        console.log(ingredients.includes(ingredient.ingredient))
         return ingredients.includes(ingredient.ingredient)
     }).length > 0
 }
@@ -154,40 +154,28 @@ function filterRecipes() {
     displayData(recipes)
     console.log('data to collect', recipes)
     ingredients.push(...recipes)
-    console.log('new array', ingredients)
-    
+    console.log('new obj', ingredients)
+    console.log(ingredients[1]['ingredients'])
 }
 
-    // Get the button, and when the user clicks on it, execute myFunction
-    document.getElementById("dropbtn").onclick = function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
+console.log('new obj1', ingredients)
+console.log('new obj2', ustensils)
 
-   // Same for Appareils
-   document.getElementById("dropbtn1").onclick = function myFunction() {
-    document.getElementById("myDropdown1").classList.toggle("show");
-  }
-   //Same for Ustensiles
-   document.getElementById("dropbtn2").onclick = function myFunction() {
-    document.getElementById("myDropdown2").classList.toggle("show");
-  }
-  
+ 
 
 function ingredientsTags(){
     for (var i = 0; i < ingredients.length; i++) {
     var sel = document.createElement("option");
-    sel.innerHTML = ingredients[i].ingredient ;
-    sel.value  = ingredients[i].ingredient ;
-    document.getElementById("state").appendChild(sel);}
+    sel.innerHTML = ingredients[i].ingredients[i] ;
+    sel.value  = ingredients[i].ingredients[i] ;
+    document.getElementById("Ingredients").appendChild(sel);}
 }
 
   
   
-  
-  
-  
   init();
 
+/** */
 
 /**
  * TODO:
