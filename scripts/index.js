@@ -4,6 +4,7 @@ let ingredients = []
 let appliances = []
 let ustensils = []
 let description = ''
+let filteredRecipes = []
 
 async function getRecipes() {
     const fetchData = await fetch('data/recipe.json')
@@ -18,7 +19,7 @@ async function getRecipes() {
         })
     return fetchData
 }
- 
+
 async function displayData(recipes) {
     const recipeSection = document.querySelector(".recipe_section");
     recipeSection.innerHTML = ''
@@ -29,22 +30,21 @@ async function displayData(recipes) {
     });
 }
 
-function initEventForm(){
+function initEventForm() {
     const researchBar = document.querySelector('.research_bar input')
     researchBar.addEventListener('input', (e) => {
         e.preventDefault()
-        if(e.target.value.length === 0){
+        if (e.target.value.length === 0) {
             displayData(allRecipes)
             return
         }
-        if(e.target.value.length < 3){
+        if (e.target.value.length < 3) {
             return
         }
         query = e.target.value
         description = e.target.value
-        ingredients = [e.target.value]
+        //ingredients = [e.target.value]
         filterRecipes()
-        
     })
 }
 
@@ -58,11 +58,15 @@ async function init() {
     initEventForm()
     filterRecipes()
     ingredientsTags()
+    ustensilsTags()
+    appliancesTags()
+    initEventSelect()
 }
 
 
 function recipeFactory(data) {
     const {name, servings, time, description} = data;
+
     function getUserCardDOM() {
         const article = document.createElement("article");
         const picture = `assets/logolpp.png`;
@@ -104,9 +108,8 @@ function recipeFactory(data) {
 }
 
 
-
 function filterByIngredient(recipe) {
-    if(ingredients.length === 0){
+    if (ingredients.length === 0) {
         return true
     }
     return recipe.ingredients.filter(ingredient => {
@@ -115,28 +118,28 @@ function filterByIngredient(recipe) {
 }
 
 function filterByUstensil(recipe) {
-    if(ustensils.length === 0){
+    if (ustensils.length === 0) {
         return true
     }
     return recipe.ustensils.filter(ustensil => ustensils.includes(ustensil)).length > 0
 }
 
 function filterByAppliance(recipe) {
-    if(appliances.length === 0){
+    if (appliances.length === 0) {
         return true
     }
     return appliances.includes(recipe.appliance)
 }
 
 function filterByDescription(recipe) {
-    if(description === ''){
+    if (description === '') {
         return true
     }
     return recipe.description.toLowerCase().includes(description.toLowerCase())
 }
 
 function filterByName(recipe) {
-    if(query === ''){
+    if (query === '') {
         return true
     }
     return recipe.name.toLowerCase().includes(query.toLocaleLowerCase())
@@ -145,35 +148,102 @@ function filterByName(recipe) {
 
 function filterRecipes() {
     const recipes = allRecipes.filter((recipe) => {
-        return (filterByIngredient(recipe) ||
-            filterByDescription(recipe) ||
-            filterByName(recipe)) &&
+        return (filterByName(recipe) || filterByDescription(recipe))  &&
+            filterByIngredient(recipe) &&
             filterByUstensil(recipe) &&
             filterByAppliance(recipe)
     })
     displayData(recipes)
-    console.log('data to collect', recipes)
-    ingredients.push(...recipes)
-    console.log('new obj', ingredients)
-    console.log(ingredients[1]['ingredients'])
+    ingredientsTags()
+    filteredRecipes = recipes
 }
 
 console.log('new obj1', ingredients)
 console.log('new obj2', ustensils)
 
- 
 
-function ingredientsTags(){
+function ingredientsTags() {
+    document.getElementById("Ingredients").innerHTML = ''
+    let ingredients = filteredRecipes
+        .map(recipe => recipe.ingredients
+            .map(ingredient => ingredient.ingredient))
+        .flat()
+    ingredients = [...new Set(ingredients)]
     for (var i = 0; i < ingredients.length; i++) {
-    var sel = document.createElement("option");
-    sel.innerHTML = ingredients[i].ingredients[i] ;
-    sel.value  = ingredients[i].ingredients[i] ;
-    document.getElementById("Ingredients").appendChild(sel);}
+        var sel = document.createElement("option");
+        sel.innerHTML = ingredients[i]
+        sel.value = ingredients[i];
+        document.getElementById("Ingredients").appendChild(sel);
+    }
 }
 
-  
-  
-  init();
+function ustensilsTags() {
+    let ustensils = filteredRecipes
+        .map(recipe => recipe.ustensils)
+        .flat()
+    ustensils = [...new Set(ustensils)]
+    for (var i = 0; i < ustensils.length; i++) {
+        var sel = document.createElement("option");
+        sel.innerHTML = ustensils[i]
+        sel.value = ustensils[i];
+        document.getElementById("Ustensiles").appendChild(sel);
+    }
+}
+
+function appliancesTags() {
+    let appliances = filteredRecipes
+        .map(recipe => recipe.appliance)
+    appliances = [...new Set(appliances)]
+    for (var i = 0; i < appliances.length; i++) {
+        var sel = document.createElement("option");
+        sel.innerHTML = appliances[i]
+        sel.value = appliances[i];
+        document.getElementById("Appareils").appendChild(sel);
+    }
+}
+
+function addTagElement(value, callback){
+    const tags = document.querySelector('#tags')
+    const element = document.createElement('li')
+    element.innerText = value
+    element.addEventListener('click', (e) => {
+        callback()
+        e.target.remove()
+    })
+    tags.appendChild(element)
+}
+
+function initEventSelect(){
+    document.querySelector('#Ingredients').addEventListener('change', (e) => {
+        ingredients.push(e.target.value)
+        addTagElement(e.target.value, () => {
+            ingredients = ingredients.filter(i => i !== e.target.value)
+            filterRecipes()
+        })
+        filterRecipes()
+    })
+
+    document.querySelector('#Appareils').addEventListener('change', (e) => {
+        appliances.push(e.target.value)
+        addTagElement(e.target.value, () => {
+            appliances = appliances.filter(i => i !== e.target.value)
+            filterRecipes()
+        })
+        filterRecipes()
+    })
+
+    document.querySelector('#Ustensiles').addEventListener('change', (e) => {
+        ustensils.push(e.target.value)
+        addTagElement(e.target.value, () => {
+            ustensils = ustensils.filter(i => i !== e.target.value)
+            filterRecipes()
+        })
+        filterRecipes()
+    })
+}
+
+
+init();
 
 /** */
 
