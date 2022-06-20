@@ -53,7 +53,6 @@ async function init() {
     const {recipes} = await getRecipes();
     allRecipes = recipes
 
-    console.log('all recipes', recipes)
     displayData(recipes);
     initEventForm()
     filterRecipes()
@@ -159,13 +158,15 @@ function filterRecipes() {
             filterByUstensil(recipe) &&
             filterByAppliance(recipe)
     })
-    displayData(recipes)
-    ingredientsTags()
     filteredRecipes = recipes
+    ingredientsTags()
+    ustensilsTags()
+    appliancesTags()
+    displayData(recipes)
+
 }
 
-console.log('new obj1', ingredients)
-console.log('new obj2', ustensils)
+
 
 
 function ingredientsTags() {
@@ -184,6 +185,7 @@ function ingredientsTags() {
 }
 
 function ustensilsTags() {
+    document.getElementById("Ustensiles").innerHTML = ''
     let ustensils = filteredRecipes
         .map(recipe => recipe.ustensils)
         .flat()
@@ -197,8 +199,10 @@ function ustensilsTags() {
 }
 
 function appliancesTags() {
+    document.getElementById("Appareils").innerHTML = ''
     let appliances = filteredRecipes
         .map(recipe => recipe.appliance)
+        .flat()
     appliances = [...new Set(appliances)]
     for (var i = 0; i < appliances.length; i++) {
         var sel = document.createElement("option");
