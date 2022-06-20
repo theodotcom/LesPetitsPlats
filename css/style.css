@@ -11,6 +11,10 @@ article img{
     padding: 1em;
 }
 
+article{
+  height: 350px;
+}
+
 .research {
     display: flex;
     flex-direction: column;
@@ -113,3 +117,21 @@ article img{
   .dropdown_container {
       display: flex;
   }
+
+  .recipe_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    width: 95%;
+    margin: 20px auto;
+}
+
+.details_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+ul{
+  list-style: none;
+}
