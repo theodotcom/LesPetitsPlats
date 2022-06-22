@@ -44,13 +44,14 @@ async function init() {
     const {recipes} = await getRecipes();
     allRecipes = recipes
 
-    displayData(recipes);
-    initEventForm()
-    filterRecipes()
     ingredientsTags()
     ustensilsTags()
     appliancesTags()
     initEventSelect()
+    initEventForm()
+    filterRecipes()
+    filterRecipesByTags()
+    displayData(recipes);
 }
 
 
@@ -109,7 +110,18 @@ function filterRecipes() {
 
 }
 
-
+function filterRecipesByTags(){
+    const recipes = allRecipes.filter((recipe) => {
+        return  filterByIngredient(recipe) &&
+        filterByUstensil(recipe) &&
+        filterByAppliance(recipe)
+})
+filteredRecipes = recipes
+    ingredientsTags()
+    ustensilsTags()
+    appliancesTags()
+    displayData(recipes)
+}
 
 
 function ingredientsTags() {
@@ -162,7 +174,6 @@ function addTagElement(value, callback){
     element.addEventListener('click', (e) => {
         callback()
         e.target.remove()
-        filterRecipes()
     })
     tags.appendChild(element)
 }
@@ -172,9 +183,9 @@ function initEventSelect(){
         ingredients.push(e.target.value)
         addTagElement(e.target.value, () => {
             ingredients = ingredients.filter(i => i !== e.target.value)
-            filterRecipes()
+            filterRecipesByTags()
         })
-        filterRecipes()
+        filterRecipesByTags()
     })
 
     document.querySelector('#Appareils').addEventListener('change', (e) => {
@@ -183,19 +194,20 @@ function initEventSelect(){
             appliances = appliances.filter(i => i !== e.target.value)
             filterRecipes()
         })
-        filterRecipes()
+        filterRecipesByTags()
     })
 
     document.querySelector('#Ustensiles').addEventListener('change', (e) => {
         ustensils.push(e.target.value)
         addTagElement(e.target.value, () => {
             ustensils = ustensils.filter(i => i !== e.target.value)
-            filterRecipes()
+            filterRecipesByTags()
         })
-        filterRecipes()
+        filterRecipesByTags()
     })
-    filterRecipes()
+    filterRecipesByTags()
 }
+
 
 
 
