@@ -4,11 +4,12 @@ import { getRecipes } from "../scripts/api.js"
 let allRecipes = []
 let query = ''
 let ingredients = []
+let selectedIngredients = []
 let appliances = []
 let ustensils = []
 let description = ''
 let filteredRecipes = []
-
+const separatorString = '--------------'
 
 
 async function displayData(recipes) {
@@ -43,14 +44,13 @@ async function init() {
     // Récupère les datas des recettes
     const {recipes} = await getRecipes();
     allRecipes = recipes
-
-    ingredientsTags()
-    ustensilsTags()
-    appliancesTags()
+    filteredRecipes = []
+    recipes.forEach(r => filteredRecipes.push(r))
+    applyTagsToOptions()
     initEventSelect()
     initEventForm()
-    filterRecipes()
-    filterRecipesByTags()
+    // filterRecipes()
+    // filterRecipesByTags()
     displayData(recipes);
 }
 
@@ -95,6 +95,12 @@ function filterByName(recipe) {
 
 }
 
+function applyTagsToOptions() {
+    ingredientsTags()
+    ustensilsTags()
+    appliancesTags()
+}
+
 function filterRecipes() {
     const recipes = allRecipes.filter((recipe) => {
         return (filterByName(recipe) || filterByDescription(recipe))  &&
@@ -103,24 +109,37 @@ function filterRecipes() {
             filterByAppliance(recipe)
     })
     filteredRecipes = recipes
-    ingredientsTags()
-    ustensilsTags()
-    appliancesTags()
+    applyTagsToOptions()
     displayData(recipes)
 
 }
 
-function filterRecipesByTags(){
-    const recipes = allRecipes.filter((recipe) => {
-        return  filterByIngredient(recipe) &&
-        filterByUstensil(recipe) &&
-        filterByAppliance(recipe)
+function filterRecipesByTags(selectedTag, type){
+    console.log('the tag is ', selectedTag)
+    console.log('je suis macron', filteredRecipes)
+     filteredRecipes = filteredRecipes.filter((recipe) => {
+        switch (type) {
+            case 'ingredient':
+                return recipe.ingredients.find(y => y.ingredient === selectedTag)  
+                break;
+            case 'appliance':
+                return recipe.appliance == selectedTag
+                break;
+            case 'ustensil':
+                console.log('cacacacaacacaacacaca')
+                return recipe.ustensils.find(ustensil => ustensil == selectedTag)
+                break;
+            default:
+                break;
+        }
+
+        // return  filterByIngredient(recipe) 
+        // &&
+        // filterByUstensil(recipe) &&
+        // filterByAppliance(recipe)
 })
-filteredRecipes = recipes
-    ingredientsTags()
-    ustensilsTags()
-    appliancesTags()
-    displayData(recipes)
+    applyTagsToOptions()
+    displayData(filteredRecipes)
 }
 
 
@@ -132,9 +151,16 @@ function ingredientsTags() {
         .flat()
     ingredients = [...new Set(ingredients)]
     for (var i = 0; i < ingredients.length; i++) {
-        var sel = document.createElement("option");
-        sel.innerHTML = ingredients[i]
-        sel.value = ingredients[i];
+        if(i === 0 ) {
+            // set default value for select
+            var sel = document.createElement("option");
+            sel.innerHTML = separatorString + 'Select an ingredient' + separatorString
+            sel.value = null;
+        } else {
+            var sel = document.createElement("option");
+            sel.innerHTML = ingredients[i]
+            sel.value = ingredients[i];
+        }
         document.getElementById("Ingredients").appendChild(sel);
     }
 }
@@ -146,9 +172,16 @@ function ustensilsTags() {
         .flat()
     ustensils = [...new Set(ustensils)]
     for (var i = 0; i < ustensils.length; i++) {
-        var sel = document.createElement("option");
-        sel.innerHTML = ustensils[i]
-        sel.value = ustensils[i];
+        if(i === 0 ) {
+            // set default value for select
+            var sel = document.createElement("option");
+            sel.innerHTML = separatorString + 'Select an ustensil' + separatorString
+            sel.value = null;
+        } else {
+            var sel = document.createElement("option");
+            sel.innerHTML = ustensils[i]
+            sel.value = ustensils[i];
+        }
         document.getElementById("Ustensiles").appendChild(sel);
     }
 }
@@ -160,9 +193,16 @@ function appliancesTags() {
         .flat()
     appliances = [...new Set(appliances)]
     for (var i = 0; i < appliances.length; i++) {
-        var sel = document.createElement("option");
-        sel.innerHTML = appliances[i]
-        sel.value = appliances[i];
+        if(i === 0 ) {
+            // set default value for select
+            var sel = document.createElement("option");
+            sel.innerHTML = separatorString + 'Select an appliance' + separatorString
+            sel.value = null;
+        } else {
+            var sel = document.createElement("option");
+            sel.innerHTML = appliances[i]
+            sel.value = appliances[i];
+        }
         document.getElementById("Appareils").appendChild(sel);
     }
 }
@@ -183,29 +223,25 @@ function initEventSelect(){
         ingredients.push(e.target.value)
         addTagElement(e.target.value, () => {
             ingredients = ingredients.filter(i => i !== e.target.value)
-            filterRecipesByTags()
         })
-        filterRecipesByTags()
+        filterRecipesByTags(e.target.value, 'ingredient')
     })
 
     document.querySelector('#Appareils').addEventListener('change', (e) => {
         appliances.push(e.target.value)
         addTagElement(e.target.value, () => {
             appliances = appliances.filter(i => i !== e.target.value)
-            filterRecipes()
         })
-        filterRecipesByTags()
+        filterRecipesByTags(e.target.value, 'appliance')
     })
 
     document.querySelector('#Ustensiles').addEventListener('change', (e) => {
         ustensils.push(e.target.value)
         addTagElement(e.target.value, () => {
             ustensils = ustensils.filter(i => i !== e.target.value)
-            filterRecipesByTags()
         })
-        filterRecipesByTags()
+        filterRecipesByTags(e.target.value, 'ustensil')
     })
-    filterRecipesByTags()
 }
 
 
