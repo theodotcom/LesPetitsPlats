@@ -9,7 +9,6 @@ let appliances = []
 let ustensils = []
 let description = ''
 let filteredRecipes = []
-const separatorString = '--------------'
 
 
 async function displayData(recipes) {
@@ -35,7 +34,6 @@ function initEventForm() {
         }
         query = e.target.value
         description = e.target.value
-        //ingredients = [e.target.value]
         filterRecipes()
     })
 }
@@ -49,8 +47,6 @@ async function init() {
     applyTagsToOptions()
     initEventSelect()
     initEventForm()
-    // filterRecipes()
-    // filterRecipesByTags()
     displayData(recipes);
 }
 
@@ -66,19 +62,6 @@ function filterByIngredient(recipe) {
     }).length > 0
 }
 
-function filterByUstensil(recipe) {
-    if (ustensils.length === 0) {
-        return true
-    }
-    return recipe.ustensils.filter(ustensil => ustensils.includes(ustensil)).length > 0
-}
-
-function filterByAppliance(recipe) {
-    if (appliances.length === 0) {
-        return true
-    }
-    return appliances.includes(recipe.appliance)
-}
 
 function filterByDescription(recipe) {
     if (description === '') {
@@ -104,39 +87,25 @@ function applyTagsToOptions() {
 function filterRecipes() {
     const recipes = allRecipes.filter((recipe) => {
         return (filterByName(recipe) || filterByDescription(recipe))  &&
-            filterByIngredient(recipe) &&
-            filterByUstensil(recipe) &&
-            filterByAppliance(recipe)
+            filterByIngredient(recipe)
     })
     filteredRecipes = recipes
     applyTagsToOptions()
     displayData(recipes)
-
 }
 
 function filterRecipesByTags(selectedTag, type){
-    console.log('the tag is ', selectedTag)
-    console.log('je suis macron', filteredRecipes)
      filteredRecipes = filteredRecipes.filter((recipe) => {
         switch (type) {
             case 'ingredient':
-                return recipe.ingredients.find(y => y.ingredient === selectedTag)  
-                break;
+                return recipe.ingredients.find(y => y.ingredient === selectedTag) ;
             case 'appliance':
-                return recipe.appliance == selectedTag
-                break;
+                return recipe.appliance == selectedTag ;
             case 'ustensil':
-                console.log('cacacacaacacaacacaca')
-                return recipe.ustensils.find(ustensil => ustensil == selectedTag)
-                break;
+                return recipe.ustensils.find(ustensil => ustensil == selectedTag) ;
             default:
                 break;
         }
-
-        // return  filterByIngredient(recipe) 
-        // &&
-        // filterByUstensil(recipe) &&
-        // filterByAppliance(recipe)
 })
     applyTagsToOptions()
     displayData(filteredRecipes)
@@ -151,16 +120,10 @@ function ingredientsTags() {
         .flat()
     ingredients = [...new Set(ingredients)]
     for (var i = 0; i < ingredients.length; i++) {
-        if(i === 0 ) {
-            // set default value for select
-            var sel = document.createElement("option");
-            sel.innerHTML = separatorString + 'Select an ingredient' + separatorString
-            sel.value = null;
-        } else {
+       
             var sel = document.createElement("option");
             sel.innerHTML = ingredients[i]
             sel.value = ingredients[i];
-        }
         document.getElementById("Ingredients").appendChild(sel);
     }
 }
@@ -172,16 +135,10 @@ function ustensilsTags() {
         .flat()
     ustensils = [...new Set(ustensils)]
     for (var i = 0; i < ustensils.length; i++) {
-        if(i === 0 ) {
-            // set default value for select
-            var sel = document.createElement("option");
-            sel.innerHTML = separatorString + 'Select an ustensil' + separatorString
-            sel.value = null;
-        } else {
+        
             var sel = document.createElement("option");
             sel.innerHTML = ustensils[i]
             sel.value = ustensils[i];
-        }
         document.getElementById("Ustensiles").appendChild(sel);
     }
 }
@@ -193,16 +150,11 @@ function appliancesTags() {
         .flat()
     appliances = [...new Set(appliances)]
     for (var i = 0; i < appliances.length; i++) {
-        if(i === 0 ) {
-            // set default value for select
-            var sel = document.createElement("option");
-            sel.innerHTML = separatorString + 'Select an appliance' + separatorString
-            sel.value = null;
-        } else {
+      
             var sel = document.createElement("option");
             sel.innerHTML = appliances[i]
             sel.value = appliances[i];
-        }
+        
         document.getElementById("Appareils").appendChild(sel);
     }
 }
