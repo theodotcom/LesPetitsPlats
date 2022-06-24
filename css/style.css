@@ -21,10 +21,27 @@ article{
     justify-content: space-around;
   }
   
-  .research__bar {
-    display: flex;
-    height: 70px;
+  .research_bar {
+    position: relative;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  .research_bar_input{
+    background:#e6e3e3;
+    border: none;
+    padding: 16px;
     width: 100%;
+    border-radius: 10px;
+  }
+
+  .research_bar_submit{
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 8px;
+    top: 0;
+    height: 100%;
   }
  
 /* Dropdown Button */
@@ -134,4 +151,16 @@ article{
 
 ul{
   list-style: none;
+}
+
+#Ingredients{
+  background-color: #3282f7;
+}
+
+#Ustensiles{
+  background-color: #68d9a5;
+}
+
+#Appareils{
+  background-color: #ed6455;
 }
