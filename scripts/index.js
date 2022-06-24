@@ -4,7 +4,6 @@ import { getRecipes } from "../scripts/api.js"
 let allRecipes = []
 let query = ''
 let ingredients = []
-let selectedIngredients = []
 let appliances = []
 let ustensils = []
 let description = ''
@@ -30,7 +29,7 @@ function initEventForm() {
             return
         }
         if (e.target.value.length < 3) {
-            return
+            return 
         }
         query = e.target.value
         description = e.target.value
@@ -92,6 +91,7 @@ function filterRecipes() {
     filteredRecipes = recipes
     applyTagsToOptions()
     displayData(recipes)
+    console.log(recipes)
 }
 
 function filterRecipesByTags(selectedTag, type){
@@ -109,6 +109,7 @@ function filterRecipesByTags(selectedTag, type){
 })
     applyTagsToOptions()
     displayData(filteredRecipes)
+    console.log('ntm', filteredRecipes)
 }
 
 
@@ -164,8 +165,8 @@ function addTagElement(value, callback){
     const element = document.createElement('li')
     element.innerText = value
     element.addEventListener('click', (e) => {
-        callback()
         e.target.remove()
+        callback()
     })
     tags.appendChild(element)
 }
