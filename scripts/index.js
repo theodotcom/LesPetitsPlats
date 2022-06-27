@@ -8,6 +8,7 @@ let appliances = []
 let ustensils = []
 let description = ''
 let filteredRecipes = []
+let filteredArray = []
 
 
 async function displayData(recipes) {
@@ -160,16 +161,23 @@ function appliancesTags() {
     }
 }
 
+ 
+
 function addTagElement(value, callback){
     const tags = document.querySelector('#tags')
     const element = document.createElement('li')
     element.innerText = value
     element.addEventListener('click', (e) => {
-        e.target.remove()
+        e.target.remove()  
+        displayData(allRecipes)
         callback()
+        console.log(allRecipes)
     })
     tags.appendChild(element)
 }
+
+
+
 
 function initEventSelect(){
     document.querySelector('#Ingredients').addEventListener('change', (e) => {
