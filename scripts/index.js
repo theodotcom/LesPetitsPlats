@@ -110,7 +110,6 @@ function filterRecipesByTags(selectedTag, type){
 })
     applyTagsToOptions()
     displayData(filteredRecipes)
-    console.log('ntm', filteredRecipes)
 }
 
 
@@ -169,8 +168,8 @@ function addTagElement(value, callback){
     element.innerText = value
     element.addEventListener('click', (e) => {
         e.target.remove()  
-        displayData(allRecipes)
         callback()
+        displayData(allRecipes)
         console.log(allRecipes)
     })
     tags.appendChild(element)
