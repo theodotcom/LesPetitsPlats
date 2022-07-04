@@ -34,6 +34,7 @@
       </form>
       
       <ul id="tags"></ul>
+
       <div class="select_container">
       <select id="Ingredients" searchable="Rechercher">
         <option value="">Ingredients</option>
@@ -45,13 +46,48 @@
         <option value="">Appareils</option>
       </select>
 
-      <div class="ingredientest">
-        <input class="ingredientsfilter" type="button" data-value="Ingredients" value="ingredient">
-        <ul id="listIngredients"></ul>
-      </div>
+  
+          <!-- filters  -->
+
+      <section class="filter">
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--ingredients"
+            type="text"
+            value="Ingrédients"
+            placeholder="Rechercher un ingrédient"
+          />
+          <ul id="filter_ingredients" style="display:none"></ul>
+        </div>
+
+      
+
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--ustensiles"
+            type="text"
+            value="Ustensiles"
+            placeholder="Rechercher un ustensile"
+          />
+          <ul id="filter_ustensiles"style="display:none"></ul>
+        </div>
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--appareils"
+            type="text"
+            value="Appareils"
+            placeholder="Rechercher un appareil"
+
+          />
+          <ul id="filter_appareils"style="display:none"></ul>
+        </div>
+      </section>
 
     </div>
-    </div>
+
       <section>
         <div class="recipe_section"></div>
       </section>

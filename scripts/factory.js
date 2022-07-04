@@ -11,6 +11,7 @@ export function recipeFactory(data) {
         const h2 = document.createElement("h2");
         h2.textContent = name;
         var myIng = document.createElement("ul");
+        myIng.setAttribute('class', 'ingredient_list')
         var ingredients = data['ingredients'];
         for (var i = 0; i < ingredients.length; i++) {
             var myPara3 = document.createElement('li');
@@ -27,6 +28,9 @@ export function recipeFactory(data) {
         details_container.setAttribute('class', 'details_container');
         const my2p = document.createElement("p");
         my2p.textContent = time + " " + "min";
+        const clock = 'assets/time.svg'
+        const img1 = document.createElement("img");
+        img1.setAttribute("src", clock)
         const recipe_container = document.createElement("div");
         recipe_container.setAttribute('class', 'recipe_container');
         const my3p = document.createElement("p");
@@ -35,6 +39,7 @@ export function recipeFactory(data) {
         img_container.appendChild(img);
         article.appendChild(details_container);
         details_container.appendChild(h2);
+        details_container.appendChild(img1);
         details_container.appendChild(my2p);
         article.appendChild(recipe_container);
         recipe_container.appendChild(myIng);

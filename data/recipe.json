@@ -297,7 +297,7 @@
     },
     {
         "id": 9,
-        "name": "Salade Méditerannéene fraiche au chèvre",
+        "name": "Salade Méditerannéene au chèvre",
         "servings": 4,
         "ingredients":[
             {
@@ -467,7 +467,7 @@
     },
     {
         "id": 14,
-        "name": "Galette Bretonne Saucisse et Fromage à raclette",
+        "name": "Galette Bretonne Saucisse",
         "servings": 2,
         "ingredients": [
             {

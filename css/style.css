@@ -6,11 +6,6 @@ header img{
     padding: 2em;
 }
 
-article img{
-    width: 10%;
-    padding: 1em;
-}
-
 article{
   height: 350px;
 }
@@ -25,6 +20,8 @@ article{
     position: relative;
     overflow: hidden;
     margin-top: 16px;
+    padding-left: 28px;
+    padding-right: 28px;
   }
 
   .research_bar_input{
@@ -39,7 +36,7 @@ article{
     background: transparent;
     border: none;
     position: absolute;
-    right: 8px;
+    right: 40px;
     top: 0;
     height: 100%;
   }
@@ -145,8 +142,23 @@ article{
 
 .details_container{
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 7px;
+  margin-bottom: -44px;
+  background-color: #e7e7e7;
+}
+
+.details_container img{
+  margin-left: auto;
+}
+
+.details_container p{
+  margin-top: 13px;
+  margin-left: 6px;
+}
+
+.details_container h2{
+  font-size: medium;
 }
 
 ul{
@@ -163,4 +175,203 @@ ul{
 
 #Appareils{
   background-color: #ed6455;
+}
+
+/* Filters section */
+.filter {
+  display: none;
+}
+
+@media only screen and (min-width: 992px) {
+  .filter {
+    margin-top: 20px;
+    display: flex;
+    gap: 60px;
+  }
+}
+
+.filter__custom-select {
+  position: relative;
+  cursor: pointer;
+  width: 153px;
+}
+
+.filter__custom-select input[type="text"]::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+
+.filter__select {
+  border: none;
+  color: #fff;
+  width: 100%;
+  height: 69px;
+  text-align: start;
+  padding-left: 20px;
+  border-radius: 10px;
+  font-size: var(--fs-18);
+  cursor: pointer;
+}
+
+.filter__select:focus {
+  outline: none;
+}
+
+.filter__select--ingredients {
+  background: #3282f7;
+}
+
+.filter__select--appareils {
+  background: green;
+}
+
+.filter__select--ustensiles {
+  background: red;
+}
+
+.filter__custom-arrow {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 4rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  pointer-events: none;
+}
+
+.filter__custom-arrow--rotate {
+  transform: rotate(180deg);
+}
+
+.filter__custom-arrow::before {
+  content: url("../assets/dropdown-icon-down.png");
+}
+
+.filter__custom-menu {
+  display: none;
+}
+
+.filter__show {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 65px;
+  color: #fff;
+  width: 100%;
+  max-height: 360px;
+  overflow: hidden;
+  border-bottom-left-radius: var(--br-5);
+  border-bottom-right-radius: var(--br-5);
+}
+
+.filter__custom-menu--primary {
+  background: #3282f7;
+}
+
+.filter__custom-menu--success {
+  background: blue;
+}
+
+.filter__custom-menu--danger {
+  background: blue;
+}
+
+.filter__custom-option {
+  width: 33%;
+  padding: 4px 0 4px 20px;
+  font-size: var(--fs-18);
+  /* color: rgb(49, 49, 49); */
+  /* text-transform: capitalize; */
+}
+
+.filter__custom-option--enable {
+  width: 33%;
+  padding: 4px 0 4px 20px;
+  font-size: var(--fs-18);
+  color: rgb(165, 162, 162);
+  pointer-events: none;
+}
+
+.filter__custom-option--enable:hover {
+  cursor: default;
+}
+
+.filter__custom-option--enable::after {
+  content: "";
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: grey;
+  transition: 300ms;
+}
+.filter__custom-option::after {
+  content: "";
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: #fff;
+  transition: 300ms;
+}
+
+.filter__custom-option:hover::after {
+  width: 15%;
+}
+
+.ingredient_list{
+  display: grid;
+  height: 114px;
+  margin-left: -32px;
+  overflow: hidden;
+}
+
+#filter_ingredients{
+  background: #3282f7;
+}
+
+#filter_appareils{
+  background:  #3e8e41;
+}
+
+#filter_ustensiles{
+  background:#ed6455;
+}
+
+.recipe_container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  background-color: #e7e7e7;
+  border-radius: 0px 0px 10px 10px;
+  height: 171px;
+}
+
+.recipe_container p{
+ height: 130px;
+ text-overflow: ellipsis;
+ overflow: hidden;
+ margin-right: 15px;
+}
+
+
+article{
+  height: 364px;
+  margin-top: 17px;
+}
+
+.img_container{
+  height: 178px;
+  background-color: #c7bebe;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.img_container img{
+  width: 10%;
+  padding: 1em;
+}
+
+.select_container{
+  padding-left: 28px;
+  height: 8em;
 }
