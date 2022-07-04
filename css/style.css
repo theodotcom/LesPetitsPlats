@@ -185,6 +185,7 @@ ul{
 @media only screen and (min-width: 992px) {
   .filter {
     margin-top: 20px;
+    margin-left: 30px;
     display: flex;
     gap: 60px;
   }
@@ -374,4 +375,8 @@ article{
 .select_container{
   padding-left: 28px;
   height: 8em;
+}
+
+.myStyle{
+  display: flex;
 }
