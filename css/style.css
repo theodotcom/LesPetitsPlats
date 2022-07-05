@@ -328,6 +328,7 @@ ul{
 
 #filter_ingredients{
   background: #3282f7;
+  display: none;
 }
 
 #filter_appareils{
@@ -377,6 +378,6 @@ article{
   height: 8em;
 }
 
-.myStyle{
-  display: flex;
+.filterIngNew{
+  display: block;
 }

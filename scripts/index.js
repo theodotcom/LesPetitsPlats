@@ -199,7 +199,7 @@ const el1 = document.getElementById("filter_ingredients")
 
 document.querySelector('.filter__select--ingredients').addEventListener('click', () => {
     if (el1.style.display === "none") {
-        el1.style.display = "block";
+        el1.style.display = "block"
     } else {
         el1.style.display = "none"
     }
