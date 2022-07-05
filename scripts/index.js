@@ -33,6 +33,18 @@ function initEventForm() {
     })
 }
 
+// function InitIngredientTagForm(){
+//     const ingredientSearchBar = document.querySelector('.filter__custom-arrow input')
+//     ingredientSearchBar.addEventListener('input', (e)=>{
+//         e.preventDefault()
+//         if (e.target.value.length > 0 && e.target.value.length < 3) {
+//             return
+//     }
+//     ingredientsTags()
+// })
+// }
+
+
 async function init() {
     // Récupère les datas des recettes
     const {recipes} = await getRecipes();
@@ -115,7 +127,7 @@ function ingredientTagEvent(ingredient, element){
 }
 
 function ingredientsTags() {
-    document.getElementById("filter_ingredients").innerHTML = ''
+    document.querySelector(".filter_ingredients").innerHTML = ''
     let filterIngredients = filteredRecipes
         .map(recipe => recipe.ingredients
             .map(ingredient => ingredient.ingredient))
@@ -125,7 +137,7 @@ function ingredientsTags() {
 
         var sel = document.createElement("li");
         sel.innerHTML = filterIngredients[i]
-        document.getElementById("filter_ingredients").appendChild(sel);
+        document.querySelector(".filter_ingredients").appendChild(sel);
         ingredientTagEvent(filterIngredients[i], sel)
     }
 }
@@ -195,11 +207,11 @@ function addTagElement(value, callback) {
     tags.appendChild(element)
 }
 
-const el1 = document.getElementById("filter_ingredients")
+const el1 = document.querySelector(".filter_ingredients")
 
 document.querySelector('.filter__select--ingredients').addEventListener('click', () => {
     if (el1.style.display === "none") {
-        el1.style.display = "block"
+        el1.style.display = "grid";
     } else {
         el1.style.display = "none"
     }

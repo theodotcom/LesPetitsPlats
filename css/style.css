@@ -165,6 +165,8 @@ ul{
   list-style: none;
 }
 
+
+
 #Ingredients{
   background-color: #3282f7;
 }
@@ -326,10 +328,7 @@ ul{
   overflow: hidden;
 }
 
-#filter_ingredients{
-  background: #3282f7;
-  display: none;
-}
+
 
 #filter_appareils{
   background:  #3e8e41;
@@ -380,4 +379,23 @@ article{
 
 .filterIngNew{
   display: block;
+}
+
+.filter_ingredients{
+  background: #3282f7;
+  display: none;
+  justify-items: start;
+  align-items: center;
+  width: 32em;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 18em;
+  overflow: hidden;
+  position: absolute;
+}
+
+.filter_ingredients li{
+ margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: -20px;
 }
