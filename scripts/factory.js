@@ -21,7 +21,7 @@ export function recipeFactory(data) {
                 ingredients[i].quantity = '';
             if (ingredients[i].unit === undefined)
                 ingredients[i].unit = '';
-            myPara3.textContent = ingredients[i].ingredient + " " + ingredients[i].quantity + " " + ingredients[i].unit;
+            myPara3.textContent = ingredients[i].ingredient + " " + " : " + ingredients[i].quantity + " " + ingredients[i].unit;
             myIng.appendChild(myPara3)
         }
         const details_container = document.createElement('div');

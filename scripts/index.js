@@ -153,7 +153,7 @@ function ustensilTagEvent(ustensil, element){
 }
 
 function ustensilsTags() {
-    document.getElementById("filter_ustensiles").innerHTML = ''
+    document.querySelector(".filter_ustensiles").innerHTML = ''
     let ustensils = filteredRecipes
         .map(recipe => recipe.ustensils)
         .flat()
@@ -162,7 +162,7 @@ function ustensilsTags() {
         var sel = document.createElement("li");
         sel.innerHTML = ustensils[i]
         sel.value = ustensils[i];
-        document.getElementById("filter_ustensiles").appendChild(sel);
+        document.querySelector(".filter_ustensiles").appendChild(sel);
         ustensilTagEvent(ustensils[i], sel)
     }
 }
@@ -178,7 +178,7 @@ function applianceTagEvent(appliance, element){
 }
 
 function appliancesTags() {
-    document.getElementById("filter_appareils").innerHTML = ''
+    document.querySelector(".filter_appareils").innerHTML = ''
     let appliances = filteredRecipes
         .map(recipe => recipe.appliance)
         .flat()
@@ -189,7 +189,7 @@ function appliancesTags() {
         sel.innerHTML = appliances[i]
         sel.value = appliances[i];
 
-        document.getElementById("filter_appareils").appendChild(sel);
+        document.querySelector(".filter_appareils").appendChild(sel);
         applianceTagEvent(appliances[i], sel)
     }
 }
@@ -218,22 +218,22 @@ document.querySelector('.filter__select--ingredients').addEventListener('click',
 
 })
 
-const el2 = document.getElementById("filter_appareils")
+const el2 = document.querySelector(".filter_appareils")
 
 document.querySelector('.filter__select--appareils').addEventListener('click', () => {
     if (el2.style.display === "none") {
-        el2.style.display = "block";
+        el2.style.display = "grid";
     } else {
         el2.style.display = "none"
     }
 
 })
 
-const el3 = document.getElementById("filter_ustensiles")
+const el3 = document.querySelector(".filter_ustensiles")
 
 document.querySelector('.filter__select--ustensiles').addEventListener('click', () => {
     if (el3.style.display === "none") {
-        el3.style.display = "block";
+        el3.style.display = "grid";
     } else {
         el3.style.display = "none"
     }

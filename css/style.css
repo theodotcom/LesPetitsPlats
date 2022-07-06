@@ -155,6 +155,7 @@ article{
 .details_container p{
   margin-top: 13px;
   margin-left: 6px;
+  font-weight: bold;
 }
 
 .details_container h2{
@@ -330,13 +331,7 @@ ul{
 
 
 
-#filter_appareils{
-  background:  #3e8e41;
-}
 
-#filter_ustensiles{
-  background:#ed6455;
-}
 
 .recipe_container{
   display: grid;
@@ -386,6 +381,7 @@ article{
   display: none;
   justify-items: start;
   align-items: center;
+  
   width: 32em;
   grid-template-columns: 1fr 1fr 1fr;
   height: 18em;
@@ -393,8 +389,41 @@ article{
   position: absolute;
 }
 
+.filter_appareils{
+  background:  #3e8e41;
+  display: none;
+  position: absolute;
+  grid-template-columns: 1fr 1fr;
+  width: 18em;
+}
+
+.filter_ustensiles{
+  background:#ed6455;
+  display: none;
+  position: absolute;
+  grid-template-columns: 1fr 1fr;
+height: 18em;
+overflow: hidden;
+width: 19em;
+}
+
+
 .filter_ingredients li{
  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: -20px;
+}
+
+.filter_ustensiles li{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: -20px;
+}
+
+.filter_appareils li{
+  margin-top: 5px;
   margin-bottom: 5px;
   color: white;
   margin-left: -20px;
