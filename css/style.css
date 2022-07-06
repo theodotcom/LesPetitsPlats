@@ -150,6 +150,7 @@ article{
 
 .details_container img{
   margin-left: auto;
+  margin-bottom: 5px;
 }
 
 .details_container p{
@@ -427,4 +428,25 @@ width: 19em;
   margin-bottom: 5px;
   color: white;
   margin-left: -20px;
+}
+
+#tags{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  gap: 10px;
+}
+
+#tags div {
+  display: flex;
+    align-items: center;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    background: #3282f7;
+}
+
+#tags div li{
+  margin-right: 13px;
+  text-transform: capitalize;
 }

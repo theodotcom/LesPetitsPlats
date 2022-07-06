@@ -33,16 +33,13 @@ function initEventForm() {
     })
 }
 
-// function InitIngredientTagForm(){
-//     const ingredientSearchBar = document.querySelector('.filter__custom-arrow input')
-//     ingredientSearchBar.addEventListener('input', (e)=>{
-//         e.preventDefault()
-//         if (e.target.value.length > 0 && e.target.value.length < 3) {
-//             return
-//     }
-//     ingredientsTags()
-// })
-// }
+function InitIngredientTagForm(){
+   const ingredientSearchBar = document.querySelector('.filter__select--ingredients')
+     ingredientSearchBar.addEventListener('input', (e)=>{
+         e.preventDefault()
+        ingredientsTags(e.target.value)
+ })
+ }
 
 
 async function init() {
@@ -53,6 +50,7 @@ async function init() {
     recipes.forEach(r => filteredRecipes.push(r))
     applyTagsToOptions()
     initEventForm()
+    InitIngredientTagForm()
     displayData(recipes);
 }
 
@@ -197,14 +195,22 @@ function appliancesTags() {
 
 function addTagElement(value, callback) {
     const tags = document.querySelector('#tags')
+    const elmt_container = document.createElement('div')
     const element = document.createElement('li')
+    const img_close = 'assets/remove-icon.png'
+    const elmt_close = document.createElement('img')
+    elmt_close.setAttribute("src", img_close);
     element.innerText = value
     element.addEventListener('click', (e) => {
         e.target.remove()
+        elmt_container.remove()
+        elmt_close.remove()
         callback(value)
         filterRecipes()
     })
-    tags.appendChild(element)
+    tags.appendChild(elmt_container);
+    elmt_container.appendChild(element);
+    elmt_container.appendChild(elmt_close);
 }
 
 const el1 = document.querySelector(".filter_ingredients")
