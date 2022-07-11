@@ -56,6 +56,52 @@ function InitIngredientTagForm() {
     });
 }
 
+function InitUstensilesTagForm() {
+    const ingredientSearchBar = document.querySelector(
+        ".filter__select--ustensiles"
+    );
+    ingredientSearchBar.addEventListener("change", (e) => {
+        e.preventDefault();
+        if (e.target.value.length > 0 && e.target.value.length < 3) {
+            return;
+        }
+        document.querySelector(".filter_ustensiles").innerHTML = "";
+    const filteredUstensiles = getFilteredUstensiles ()
+    let filteredSearchUstensiles = filteredUstensiles.filter( q=>q.toLowerCase().includes(e.target.value.toLowerCase()))
+    for (var i = 0; i < filteredSearchUstensiles.length; i++) {
+        var sel = document.createElement("li");
+        sel.innerHTML = filteredSearchUstensiles[i];
+        sel.value = filteredSearchUstensiles[i];
+        document.querySelector(".filter_ustensiles").appendChild(sel);
+        ustensilTagEvent(filteredSearchUstensiles[i], sel);
+    }
+    });
+}
+
+
+function InitAppliancesTagForm() {
+    const ingredientSearchBar = document.querySelector(
+        ".filter__select--appareils"
+    );
+    ingredientSearchBar.addEventListener("change", (e) => {
+        e.preventDefault();
+        if (e.target.value.length > 0 && e.target.value.length < 3) {
+            return;
+        }
+        document.querySelector(".filter_appareils").innerHTML = "";
+       const filteredAppliances = getFilteredAppliances()
+       let filteredSearchAppliances = filteredAppliances.filter(z=>z.toLowerCase().includes(e.target.value.toLowerCase()))
+        for (var i = 0; i < filteredSearchAppliances.length; i++) {
+            var sel = document.createElement("li");
+            sel.innerHTML = filteredSearchAppliances[i];
+            sel.value = filteredSearchAppliances[i];
+    
+            document.querySelector(".filter_appareils").appendChild(sel);
+            applianceTagEvent(filteredSearchAppliances[i], sel);
+        }
+    });
+}
+
 async function init() {
     // Récupère les datas des recettes
     const {recipes} = await getRecipes();
@@ -65,6 +111,8 @@ async function init() {
     applyTagsToOptions();
     initEventForm();
     InitIngredientTagForm();
+    InitUstensilesTagForm()
+    InitAppliancesTagForm()
     displayData(recipes);
 }
 
@@ -159,6 +207,17 @@ function getFilteredIngredients() {
         .flat();
     return [...new Set(filterIngredients)];
 }
+
+function getFilteredUstensiles() {
+    let ustensils = filteredRecipes.map((recipe) => recipe.ustensils).flat();
+    return [...new Set(ustensils)];
+}
+
+
+function getFilteredAppliances() {
+    let appliances = filteredRecipes.map((recipe) => recipe.appliance).flat();
+                return [...new Set(appliances)];
+ }
 
 function ingredientsTags() {
     document.querySelector(".filter_ingredients").innerHTML = "";
