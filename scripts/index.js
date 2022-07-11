@@ -118,24 +118,24 @@ function applyTagsToOptions() {
 }
 
 function filterRecipes() {
-    // const recipes = []
-    // for (let i = 0; i < allRecipes.length; i++) {
-    //     const recipe = allRecipes[i]
-    //     if ((filterByName(recipe) || filterByDescription(recipe)) &&
-    //     filterByIngredient(recipe) &&
-    //     filterByUstensil(recipe) &&
-    //     filterByAppliance(recipe)) {
-    //         recipes.push(recipe)
-    //     }
-    // }
-    const recipes = allRecipes.filter((recipe) => {
-        return (
-            (filterByName(recipe) || filterByDescription(recipe)) &&
-            filterByIngredient(recipe) &&
-            filterByUstensil(recipe) &&
-            filterByAppliance(recipe)
-        );
-    });
+    const recipes = []
+     for (let i = 0; i < allRecipes.length; i++) {
+         const recipe = allRecipes[i]
+         if ((filterByName(recipe) || filterByDescription(recipe)) &&
+         filterByIngredient(recipe) &&
+         filterByUstensil(recipe) &&
+         filterByAppliance(recipe)) {
+             recipes.push(recipe)
+         }
+    }
+    // const recipes = allRecipes.filter((recipe) => {
+    //     return (
+    //         (filterByName(recipe) || filterByDescription(recipe)) &&
+    //         filterByIngredient(recipe) &&
+    //         filterByUstensil(recipe) &&
+    //         filterByAppliance(recipe)
+    //     );
+    // });
     filteredRecipes = recipes;
     applyTagsToOptions();
     displayData(recipes);
