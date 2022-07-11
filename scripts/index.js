@@ -249,8 +249,7 @@ function ustensilTagEvent(ustensil, element) {
 
 function ustensilsTags() {
   document.querySelector(".filter_ustensiles").innerHTML = "";
-  let ustensils = filteredRecipes.map((recipe) => recipe.ustensils).flat();
-  ustensils = [...new Set(ustensils)];
+  const ustensils = getFilteredUstensiles();
   for (var i = 0; i < ustensils.length; i++) {
     var sel = document.createElement("li");
     sel.innerHTML = ustensils[i];
@@ -272,8 +271,7 @@ function applianceTagEvent(appliance, element) {
 
 function appliancesTags() {
   document.querySelector(".filter_appareils").innerHTML = "";
-  let appliances = filteredRecipes.map((recipe) => recipe.appliance).flat();
-  appliances = [...new Set(appliances)];
+  const appliances = getFilteredAppliances(); 
   for (var i = 0; i < appliances.length; i++) {
     var sel = document.createElement("li");
     sel.innerHTML = appliances[i];
