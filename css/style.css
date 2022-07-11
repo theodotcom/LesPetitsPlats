@@ -1,146 +1,157 @@
-header img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 23%;
-    padding: 2em;
+header img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 23%;
+  padding: 2em;
 }
 
-article{
+article {
   height: 350px;
 }
 
 .research {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  
-  .research_bar {
-    position: relative;
-    overflow: hidden;
-    margin-top: 16px;
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-
-  .research_bar_input{
-    background:#e6e3e3;
-    border: none;
-    padding: 16px;
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .research_bar_submit{
-    background: transparent;
-    border: none;
-    position: absolute;
-    right: 40px;
-    top: 0;
-    height: 100%;
-  }
- 
-/* Dropdown Button */
-#dropbtn {
-    background-color:royalblue;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  #dropbtn1 {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-  #dropbtn2 {
-    background-color: red;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-
-  /* Dropdown button on hover & focus */
-  #dropbtn:hover, #dropbtn:focus {
-    background-color: rgb(42, 75, 173);
-  }
-
-  #dropbtn1:hover, #dropbtn1:focus{
-    background-color: #3e8e41;
-  }
-
-  #dropbtn2:hover, #dropbtn2:focus {
-    background-color:rgba(255, 0, 0, 0.699);
-  }
-  
-  /* The search field */
-  #myInput {
-    box-sizing: border-box;
-    background-image: url('searchicon.png');
-    background-position: 14px 12px;
-    background-repeat: no-repeat;
-    font-size: 16px;
-    padding: 14px 20px 12px 45px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* The search field when it gets focus/clicked on */
-  #myInput:focus {outline: 3px solid #ddd;}
-  
-  /* The container <div> - needed to position the dropdown content */
-  #dropdown, #dropdown1, #dropdown2 {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f6f6f6;
-    min-width: 230px;
-    border: 1px solid #ddd;
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
-
-  /* Dropdown Container */
-  .dropdown_container {
-      display: flex;
-  }
-
-  .recipe_section{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    width: 95%;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.details_container{
+.research_bar {
+  position: relative;
+  overflow: hidden;
+  margin-top: 16px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.research_bar_input {
+  background: #e6e3e3;
+  border: none;
+  padding: 16px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.research_bar_submit {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 40px;
+  top: 0;
+  height: 100%;
+}
+
+/* Dropdown Button */
+#dropbtn {
+  background-color: royalblue;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#dropbtn1 {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+#dropbtn2 {
+  background-color: red;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+#dropbtn:hover,
+#dropbtn:focus {
+  background-color: rgb(42, 75, 173);
+}
+
+#dropbtn1:hover,
+#dropbtn1:focus {
+  background-color: #3e8e41;
+}
+
+#dropbtn2:hover,
+#dropbtn2:focus {
+  background-color: rgba(255, 0, 0, 0.699);
+}
+
+/* The search field */
+#myInput {
+  box-sizing: border-box;
+  background-image: url("searchicon.png");
+  background-position: 14px 12px;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  padding: 14px 20px 12px 45px;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+/* The search field when it gets focus/clicked on */
+#myInput:focus {
+  outline: 3px solid #ddd;
+}
+
+/* The container <div> - needed to position the dropdown content */
+#dropdown,
+#dropdown1,
+#dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+/* Dropdown Container */
+.dropdown_container {
+  display: flex;
+}
+
+.recipe_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 95%;
+  margin: 20px auto;
+}
+
+.details_container {
   display: flex;
   justify-content: space-between;
   padding: 7px;
@@ -148,36 +159,34 @@ article{
   background-color: #e7e7e7;
 }
 
-.details_container img{
+.details_container img {
   margin-left: auto;
   margin-bottom: 5px;
 }
 
-.details_container p{
+.details_container p {
   margin-top: 13px;
   margin-left: 6px;
   font-weight: bold;
 }
 
-.details_container h2{
+.details_container h2 {
   font-size: medium;
 }
 
-ul{
+ul {
   list-style: none;
 }
 
-
-
-#Ingredients{
+#Ingredients {
   background-color: #3282f7;
 }
 
-#Ustensiles{
+#Ustensiles {
   background-color: #68d9a5;
 }
 
-#Appareils{
+#Appareils {
   background-color: #ed6455;
 }
 
@@ -323,18 +332,14 @@ ul{
   width: 15%;
 }
 
-.ingredient_list{
+.ingredient_list {
   display: grid;
   height: 114px;
   margin-left: -32px;
   overflow: hidden;
 }
 
-
-
-
-
-.recipe_container{
+.recipe_container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
@@ -344,45 +349,44 @@ ul{
   height: 171px;
 }
 
-.recipe_container p{
- height: 130px;
- text-overflow: ellipsis;
- overflow: hidden;
- margin-right: 15px;
+.recipe_container p {
+  height: 130px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-right: 15px;
 }
 
-
-article{
+article {
   height: 364px;
   margin-top: 17px;
 }
 
-.img_container{
+.img_container {
   height: 178px;
   background-color: #c7bebe;
   border-radius: 10px 10px 0px 0px;
 }
 
-.img_container img{
+.img_container img {
   width: 10%;
   padding: 1em;
 }
 
-.select_container{
+.select_container {
   padding-left: 28px;
   height: 8em;
 }
 
-.filterIngNew{
+.filterIngNew {
   display: block;
 }
 
-.filter_ingredients{
+.filter_ingredients {
   background: #3282f7;
   display: none;
   justify-items: start;
   align-items: center;
-  
+
   width: 32em;
   grid-template-columns: 1fr 1fr 1fr;
   height: 18em;
@@ -390,47 +394,46 @@ article{
   position: absolute;
 }
 
-.filter_appareils{
-  background:  #3e8e41;
+.filter_appareils {
+  background: #3e8e41;
   display: none;
   position: absolute;
   grid-template-columns: 1fr 1fr;
   width: 18em;
 }
 
-.filter_ustensiles{
-  background:#ed6455;
+.filter_ustensiles {
+  background: #ed6455;
   display: none;
   position: absolute;
   grid-template-columns: 1fr 1fr;
-height: 18em;
-overflow: hidden;
-width: 19em;
+  height: 18em;
+  overflow: hidden;
+  width: 19em;
 }
 
-
-.filter_ingredients li{
- margin-top: 5px;
-  margin-bottom: 5px;
-  color: white;
-  margin-left: -20px;
-}
-
-.filter_ustensiles li{
+.filter_ingredients li {
   margin-top: 5px;
   margin-bottom: 5px;
   color: white;
   margin-left: -20px;
 }
 
-.filter_appareils li{
+.filter_ustensiles li {
   margin-top: 5px;
   margin-bottom: 5px;
   color: white;
   margin-left: -20px;
 }
 
-#tags{
+.filter_appareils li {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: white;
+  margin-left: -20px;
+}
+
+#tags {
   display: flex;
   flex-wrap: wrap;
   margin-top: 25px;
@@ -439,14 +442,14 @@ width: 19em;
 
 #tags div {
   display: flex;
-    align-items: center;
-    border-radius: 5px;
-    color: #fff;
-    padding: 10px 20px;
-    background: #3282f7;
+  align-items: center;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px 20px;
+  background: #3282f7;
 }
 
-#tags div li{
+#tags div li {
   margin-right: 13px;
   text-transform: capitalize;
 }
