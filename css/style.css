@@ -386,7 +386,7 @@ article {
   display: none;
   justify-items: start;
   align-items: center;
-
+margin-top: 0px;
   width: 32em;
   grid-template-columns: 1fr 1fr 1fr;
   height: 18em;
@@ -395,6 +395,7 @@ article {
 }
 
 .filter_appareils {
+  margin-top: 0px;
   background: #3e8e41;
   display: none;
   position: absolute;
@@ -403,6 +404,7 @@ article {
 }
 
 .filter_ustensiles {
+  margin-top: 0px;
   background: #ed6455;
   display: none;
   position: absolute;
