@@ -306,7 +306,7 @@ document
   .querySelector(".filter__select--ingredients")
   .addEventListener("click", () => {
     if (el1.style.display === "none") {
-      el1.style.display = "grid";
+      el1.style.display = "flex";
     } else {
       el1.style.display = "none";
     }
@@ -318,7 +318,7 @@ document
   .querySelector(".filter__select--appareils")
   .addEventListener("click", () => {
     if (el2.style.display === "none") {
-      el2.style.display = "grid";
+      el2.style.display = "flex";
     } else {
       el2.style.display = "none";
     }
@@ -330,7 +330,7 @@ document
   .querySelector(".filter__select--ustensiles")
   .addEventListener("click", () => {
     if (el3.style.display === "none") {
-      el3.style.display = "grid";
+      el3.style.display = "flex";
     } else {
       el3.style.display = "none";
     }
