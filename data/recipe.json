@@ -39,7 +39,7 @@
         "servings": 2,
         "ingredients": [
             {
-                "ingredient" : "Thon Rouge (ou blanc)",
+                "ingredient" : "Thon Rouge",
                 "quantity" : 200,
                 "unit" : "grammes"
             },
@@ -173,7 +173,7 @@
                "unit": "grammes"
            },
            {
-                "ingredient": "Moutarde de Dijon",
+                "ingredient": "Moutarde",
                 "quantity": 1,
                 "unite": "cuillères à soupe"
            }
@@ -743,7 +743,7 @@
         ],
         "time": 30,
         "description":"Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
-        "appliance": "Casserolle.",
+        "appliance": "Casserolle",
         "ustensils":["Cuillère en bois", "louche", "couteau"]
     },
     {
