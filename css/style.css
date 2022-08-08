@@ -266,3 +266,18 @@ article {
   margin-right: 13px;
   text-transform: capitalize;
 }
+
+.cards__no-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 200px;
+  z-index: -1;
+}
+
+.cards__no-recipes-text {
+  font-weight: bold;
+  font-size: var(--fs-18);
+  color: rgb(49, 49, 49);
+}

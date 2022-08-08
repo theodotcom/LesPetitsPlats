@@ -11,6 +11,12 @@ let filteredRecipes = [];
 
 async function displayData(recipes) {
   const recipeSection = document.querySelector(".recipe_section");
+  console.log ('taille', recipes.length);
+  if (recipes.length === 0){
+  const h2 = document.createElement("h2");
+    h2.textContent = "Aucun resultat ne correspond à votre recherche";
+    recipeSection.appendChild(h2);
+    }
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
     const recipeModel = recipeFactory(recipe);
@@ -18,6 +24,7 @@ async function displayData(recipes) {
     recipeSection.appendChild(userCardDOM);
   });
 }
+
 
 function initEventForm() {
   const researchBar = document.querySelector(".research_bar input");
@@ -174,16 +181,6 @@ function applyTagsToOptions() {
 }
 
 function filterRecipes() {
-  // const recipes = []
-  // for (let i = 0; i < allRecipes.length; i++) {
-  //     const recipe = allRecipes[i]
-  //     if ((filterByName(recipe) || filterByDescription(recipe)) &&
-  //     filterByIngredient(recipe) &&
-  //     filterByUstensil(recipe) &&
-  //     filterByAppliance(recipe)) {
-  //         recipes.push(recipe)
-  //     }
-  // }
   const recipes = allRecipes.filter((recipe) => {
     return (
       (filterByName(recipe) || filterByDescription(recipe)) &&
@@ -331,7 +328,8 @@ document
   .addEventListener("click", () => {
     if (el3.style.display === "none") {
       el3.style.display = "flex";
-    } else {
+    } 
+    else {
       el3.style.display = "none";
     }
   });
