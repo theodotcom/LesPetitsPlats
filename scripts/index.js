@@ -11,20 +11,19 @@ let filteredRecipes = [];
 
 async function displayData(recipes) {
   const recipeSection = document.querySelector(".recipe_section");
-  console.log ('taille', recipes.length);
+  recipeSection.innerHTML = "";
   if (recipes.length === 0){
   const h2 = document.createElement("h2");
     h2.textContent = "Aucun resultat ne correspond à votre recherche";
     recipeSection.appendChild(h2);
-    }
+    } else {
   recipeSection.innerHTML = "";
   recipes.forEach((recipe) => {
     const recipeModel = recipeFactory(recipe);
     const userCardDOM = recipeModel.getUserCardDOM();
-    recipeSection.appendChild(userCardDOM);
-  });
+    recipeSection.appendChild(userCardDOM);  
+  })}
 }
-
 
 function initEventForm() {
   const researchBar = document.querySelector(".research_bar input");
@@ -33,8 +32,8 @@ function initEventForm() {
     if (e.target.value.length > 0 && e.target.value.length < 3) {
       return;
     }
-    query = e.target.value;
-    description = e.target.value;
+    query = e.target.value.trim();
+    description = e.target.value.trim();
     filterRecipes();
   });
 }
@@ -117,6 +116,7 @@ async function init() {
   // Récupère les datas des recettes
   const { recipes } = await getRecipes();
   allRecipes = recipes;
+  console.log(allRecipes)
   filteredRecipes = [];
   recipes.forEach((r) => filteredRecipes.push(r));
   applyTagsToOptions();
@@ -184,6 +184,7 @@ function filterRecipes() {
   const recipes = allRecipes.filter((recipe) => {
     return (
       (filterByName(recipe) || filterByDescription(recipe)) &&
+      // cf fonction et ce qu'elles retournent
       filterByIngredient(recipe) &&
       filterByUstensil(recipe) &&
       filterByAppliance(recipe)
