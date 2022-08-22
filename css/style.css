@@ -259,7 +259,18 @@ article {
   border-radius: 5px;
   color: #fff;
   padding: 10px 20px;
+}
+
+#tags .ingredientList{
   background: #3282f7;
+}
+
+#tags .applianceList{
+  background: #008000;
+}
+
+#tags .ustensilList{
+  background: #f00;
 }
 
 #tags div li {

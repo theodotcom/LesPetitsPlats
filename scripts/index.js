@@ -195,15 +195,6 @@ function filterRecipes() {
   displayData(recipes);
 }
 
-function ingredientTagEvent(ingredient, element) {
-  element.addEventListener("click", () => {
-    ingredients.push(ingredient);
-    addTagElement(ingredient, (value) => {
-      ingredients = ingredients.filter((i) => i !== value);
-    });
-    filterRecipes();
-  });
-}
 
 function getFilteredIngredients() {
   let filterIngredients = filteredRecipes
@@ -224,6 +215,17 @@ function getFilteredAppliances() {
   return [...new Set(appliances)];
 }
 
+
+function ingredientTagEvent(ingredient, element) {
+  element.addEventListener("click", () => {
+    ingredients.push(ingredient);
+    addTagElementIngredient(ingredient, (value) => {
+      ingredients = ingredients.filter((i) => i !== value);
+    });
+    filterRecipes();
+  });
+}
+
 function ingredientsTags() {
   document.querySelector(".filter_ingredients").innerHTML = "";
   const filterIngredients = getFilteredIngredients();
@@ -238,7 +240,7 @@ function ingredientsTags() {
 function ustensilTagEvent(ustensil, element) {
   element.addEventListener("click", () => {
     ustensils.push(ustensil);
-    addTagElement(ustensil, (value) => {
+    addTagElementUstensil(ustensil, (value) => {
       ustensils = ustensils.filter((i) => i !== value);
     });
     filterRecipes();
@@ -260,7 +262,7 @@ function ustensilsTags() {
 function applianceTagEvent(appliance, element) {
   element.addEventListener("click", () => {
     appliances.push(appliance);
-    addTagElement(appliance, (value) => {
+    addTagElementAppliance(appliance, (value) => {
       appliances = appliances.filter((i) => i !== value);
     });
     filterRecipes();
@@ -280,23 +282,63 @@ function appliancesTags() {
   }
 }
 
-function addTagElement(value, callback) {
+function addTagElementAppliance(appliance, callback) {
   const tags = document.querySelector("#tags");
   const elmt_container = document.createElement("div");
-  const element = document.createElement("li");
+  elmt_container.classList.add("applianceList");
+  const element1 = document.createElement("li");
   const img_close = "assets/remove-icon.png";
   const elmt_close = document.createElement("img");
   elmt_close.setAttribute("src", img_close);
-  element.innerText = value;
-  element.addEventListener("click", () => {
+  element1.innerText = appliance;
+  element1.addEventListener("click", () => {
     elmt_container.remove();
-    callback(value);
+    callback(appliance);
     filterRecipes();
   });
   tags.appendChild(elmt_container);
-  elmt_container.appendChild(element);
+  elmt_container.appendChild(element1);
   elmt_container.appendChild(elmt_close);
 }
+
+function addTagElementUstensil(ustensil, callback) {
+  const tags = document.querySelector("#tags");
+  const elmt_container = document.createElement("div");
+  elmt_container.classList.add("ustensilList");
+  const element2 = document.createElement("li");
+  const img_close = "assets/remove-icon.png";
+  const elmt_close = document.createElement("img");
+  elmt_close.setAttribute("src", img_close);
+  element2.innerText = ustensil;
+  element2.addEventListener("click", () => {
+    elmt_container.remove();
+    callback(ustensil);
+    filterRecipes();
+  });
+  tags.appendChild(elmt_container);
+  elmt_container.appendChild(element2);
+  elmt_container.appendChild(elmt_close);
+}
+function addTagElementIngredient(ingredient, callback) {
+  const tags = document.querySelector("#tags");
+  const elmt_container = document.createElement("div");
+  elmt_container.classList.add("ingredientList");
+  const element3 = document.createElement("li");
+  const img_close = "assets/remove-icon.png";
+  const elmt_close = document.createElement("img");
+  elmt_close.setAttribute("src", img_close);
+  element3.innerText = ingredient;
+  element3.addEventListener("click", () => {
+    elmt_container.remove();
+    callback(ingredient);
+    filterRecipes();
+  });
+  tags.appendChild(elmt_container);
+  elmt_container.appendChild(element3);
+  elmt_container.appendChild(elmt_close);
+}
+
+
 
 const el1 = document.querySelector(".filter_ingredients");
 
