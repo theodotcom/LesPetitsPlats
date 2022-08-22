@@ -341,40 +341,47 @@ function addTagElementIngredient(ingredient, callback) {
 
 
 const el1 = document.querySelector(".filter_ingredients");
+const el2 = document.querySelector(".filter_appareils");
+const el3 = document.querySelector(".filter_ustensiles");
 
 document
   .querySelector(".filter__select--ingredients")
   .addEventListener("click", () => {
     if (el1.style.display === "none") {
       el1.style.display = "flex";
+      el2.style.display = "none";
+      el3.style.display = "none";
     } else {
       el1.style.display = "none";
     }
   });
-
-const el2 = document.querySelector(".filter_appareils");
-
+  
 document
   .querySelector(".filter__select--appareils")
   .addEventListener("click", () => {
     if (el2.style.display === "none") {
       el2.style.display = "flex";
+      el1.style.display = "none";
+      el3.style.display = "none";
     } else {
       el2.style.display = "none";
     }
   });
 
-const el3 = document.querySelector(".filter_ustensiles");
+
 
 document
   .querySelector(".filter__select--ustensiles")
   .addEventListener("click", () => {
     if (el3.style.display === "none") {
       el3.style.display = "flex";
+      el2.style.display = "none";
+      el1.style.display = "none";
     } 
     else {
       el3.style.display = "none";
     }
   });
+
 
 init();
