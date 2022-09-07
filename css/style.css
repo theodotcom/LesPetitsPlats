@@ -14,6 +14,11 @@ article {
   height: 350px;
 }
 
+.container {
+  max-width: 95%;
+  margin: auto;
+}
+
 .research {
   display: flex;
   flex-direction: column;
@@ -24,8 +29,6 @@ article {
   position: relative;
   overflow: hidden;
   margin-top: 16px;
-  padding-left: 28px;
-  padding-right: 28px;
 }
 
 .research_bar_input {
@@ -40,7 +43,7 @@ article {
   background: transparent;
   border: none;
   position: absolute;
-  right: 40px;
+  right: 10px;
   top: 0;
   height: 100%;
 }
@@ -49,8 +52,7 @@ article {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  width: 95%;
-  margin: 20px auto;
+  margin-top: 20px;
 }
 
 .details_container {
@@ -81,7 +83,6 @@ ul {
 }
 
 .filter {
-  margin-left: 30px;
   display: flex;
   gap: 60px;
 }
@@ -90,6 +91,9 @@ ul {
   position: relative;
   cursor: pointer;
   width: 153px;
+  display: flex;
+  border-radius: 10px;
+  transition: width .5s linear;
 }
 
 .filter__custom-select input[type="text"]::placeholder {
@@ -101,12 +105,13 @@ ul {
   border: none;
   color: #fff;
   width: 100%;
-  height: 69px;
   text-align: start;
-  padding-left: 20px;
   border-radius: 10px;
   font-size: var(--fs-18);
   cursor: pointer;
+  padding: 24px;
+  display: block;
+  outline: transparent;
 }
 
 .filter__select--ingredients {
@@ -122,14 +127,12 @@ ul {
 }
 
 .filter__custom-arrow {
-  position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 4rem;
   display: flex;
   align-items: center;
   height: 100%;
   pointer-events: none;
+  position: absolute;
+  right: 5px;
 }
 
 .filter__custom-arrow::before {
@@ -185,51 +188,37 @@ article {
   display: block;
 }
 
-.filter_ingredients {
-  background: #3282f7;
-  display: none;
+.filter_content {
+  /*display: none;*/
+  display: flex;
   flex-wrap: wrap;
   position: absolute;
-  top: 55px;
+  top: 48px;
   color: #fff;
-  width: 332%;
+  width: 100%;
   max-height: 348px;
-  overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
+  overflow: auto;
+  left: 0;
+  border-radius: 0 10px 10px 10px;
+  box-sizing: border-box;
+
+  height: 0;
+  padding: 0;
 }
 
-.filter_appareils {
-  background: #3e8e41;
-  display: none;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 55px;
-  color: #fff;
-  width: 300%;
-  max-height: 348px;
-  overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
+.filter_show {
+  width: 90%;
 }
 
-.filter_ustensiles {
-  background: #ed6455;
-  display: none;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 55px;
-  color: #fff;
-  width: 332%;
-  max-height: 342px;
-  overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
-  text-transform: capitalize;
+.filter_show > .filter_content{
+  padding: 16px;
+  height: auto;
 }
 
 .filter_ingredients li {
   width: 31%;
-  padding: 12px 0px 4px 23px;
   color: white;
-  margin-left: -20px;
+  padding: 4px
 }
 
 .filter_ustensiles li {
@@ -251,6 +240,7 @@ article {
   flex-wrap: wrap;
   margin-top: 25px;
   gap: 10px;
+  padding: 0;
 }
 
 #tags div {
