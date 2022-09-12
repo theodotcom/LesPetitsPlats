@@ -54,3 +54,20 @@ export function recipeFactory(data) {
 
   return { getUserCardDOM }
 }
+
+export async function displayData(recipes) {
+  const recipeSection = document.querySelector('.recipe_section')
+  recipeSection.innerHTML = ''
+  if (recipes.length === 0) {
+    const h2 = document.createElement('h2')
+    h2.textContent = 'Aucun resultat ne correspond à votre recherche'
+    recipeSection.appendChild(h2)
+  } else {
+    recipeSection.innerHTML = ''
+    recipes.forEach((recipe) => {
+      const recipeModel = recipeFactory(recipe)
+      const userCardDOM = recipeModel.getUserCardDOM()
+      recipeSection.appendChild(userCardDOM)
+    })
+  }
+}

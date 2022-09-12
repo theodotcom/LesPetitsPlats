@@ -1,5 +1,5 @@
-import { recipeFactory } from '../scripts/factory.js'
 import { getRecipes } from '../scripts/api.js'
+import { displayData } from '../scripts/factory.js'
 
 let allRecipes = []
 let query = ''
@@ -9,24 +9,7 @@ let ustensils = []
 let description = ''
 let filteredRecipes = []
 
-async function displayData(recipes) {
-  const recipeSection = document.querySelector('.recipe_section')
-  recipeSection.innerHTML = ''
-  if (recipes.length === 0) {
-    const h2 = document.createElement('h2')
-    h2.textContent = 'Aucun resultat ne correspond à votre recherche'
-    recipeSection.appendChild(h2)
-  } else {
-    recipeSection.innerHTML = ''
-    recipes.forEach((recipe) => {
-      const recipeModel = recipeFactory(recipe)
-      const userCardDOM = recipeModel.getUserCardDOM()
-      recipeSection.appendChild(userCardDOM)
-    })
-  }
-}
-
-function initEventForm() {
+function InitSearchBarForm() {
   const researchBar = document.querySelector('.research_bar input')
   researchBar.addEventListener('input', (e) => {
     e.preventDefault()
@@ -37,6 +20,18 @@ function initEventForm() {
     description = e.target.value.trim()
     filterRecipes()
   })
+}
+
+async function init() {
+  // Récupère les datas des recettes
+  const { recipes } = await getRecipes()
+  allRecipes = recipes
+  filteredRecipes = []
+  recipes.forEach((r) => filteredRecipes.push(r))
+  applyTagsToOptions()
+  InitSearchBarForm()
+  InitTagsForms()
+  displayData(recipes)
 }
 
 function InitIngredientTagForm() {
@@ -53,8 +48,6 @@ function InitIngredientTagForm() {
     let filteredSearchIng = filterIngredients.filter((w) =>
       w.toLowerCase().includes(e.target.value.toLowerCase())
     )
-    console.log(filteredSearchIng)
-
     for (var i = 0; i < filteredSearchIng.length; i++) {
       var sel = document.createElement('li')
       sel.innerHTML = filteredSearchIng[i]
@@ -113,18 +106,28 @@ function InitAppliancesTagForm() {
   })
 }
 
-async function init() {
-  // Récupère les datas des recettes
-  const { recipes } = await getRecipes()
-  allRecipes = recipes
-  console.log(allRecipes)
-  filteredRecipes = []
-  recipes.forEach((r) => filteredRecipes.push(r))
+function InitTagsForms() {
+  InitAppliancesTagForm()
+  InitIngredientTagForm()
+  InitUstensilesTagForm()
+}
+
+//Main filter
+function filterRecipes() {
+  const recipes = allRecipes.filter((recipe) => {
+    return (
+      (filterByName(recipe) || filterByDescription(recipe)) &&
+      filterByIngredient(recipe) &&
+      filterByUstensil(recipe) &&
+      filterByAppliance(recipe)
+    )
+  })
+  filteredRecipes = recipes
   applyTagsToOptions()
-  initEventForm()
-  InitTagsForms()
   displayData(recipes)
 }
+
+//Each filter
 
 function filterByIngredient(recipe) {
   if (ingredients.length === 0) {
@@ -169,32 +172,9 @@ function filterByName(recipe) {
   return recipe.name.toLowerCase().includes(query.toLocaleLowerCase())
 }
 
-function InitTagsForms() {
-  InitAppliancesTagForm()
-  InitIngredientTagForm()
-  InitUstensilesTagForm()
-}
-
-function applyTagsToOptions() {
-  ingredientsTags()
-  ustensilsTags()
-  appliancesTags()
-}
-
-function filterRecipes() {
-  const recipes = allRecipes.filter((recipe) => {
-    return (
-      (filterByName(recipe) || filterByDescription(recipe)) &&
-      // cf fonction et ce qu'elles retournent
-      filterByIngredient(recipe) &&
-      filterByUstensil(recipe) &&
-      filterByAppliance(recipe)
-    )
-  })
-  filteredRecipes = recipes
-  applyTagsToOptions()
-  displayData(recipes)
-}
+//Get the filtered list of ingredients, ustensils & appliances after a search
+// to create new arrays with the filtereds's results -->filterX
+// and use them to show only the left results
 
 function getFilteredIngredients() {
   let filterIngredients = filteredRecipes
@@ -215,16 +195,7 @@ function getFilteredAppliances() {
   return [...new Set(appliances)]
 }
 
-function ingredientTagEvent(ingredient, element) {
-  console.log(element)
-  element.addEventListener('click', () => {
-    ingredients.push(ingredient)
-    addTagElementIngredient(ingredient, (value) => {
-      ingredients = ingredients.filter((i) => i !== value)
-    })
-    filterRecipes()
-  })
-}
+// Show the list of filterX from getFilteredX
 
 function ingredientsTags() {
   document.querySelector('.filter_ingredients').innerHTML = ''
@@ -235,16 +206,6 @@ function ingredientsTags() {
     document.querySelector('.filter_ingredients').appendChild(sel)
     ingredientTagEvent(filterIngredients[i], sel)
   }
-}
-
-function ustensilTagEvent(ustensil, element) {
-  element.addEventListener('click', () => {
-    ustensils.push(ustensil)
-    addTagElementUstensil(ustensil, (value) => {
-      ustensils = ustensils.filter((i) => i !== value)
-    })
-    filterRecipes()
-  })
 }
 
 function ustensilsTags() {
@@ -259,16 +220,6 @@ function ustensilsTags() {
   }
 }
 
-function applianceTagEvent(appliance, element) {
-  element.addEventListener('click', () => {
-    appliances.push(appliance)
-    addTagElementAppliance(appliance, (value) => {
-      appliances = appliances.filter((i) => i !== value)
-    })
-    filterRecipes()
-  })
-}
-
 function appliancesTags() {
   document.querySelector('.filter_appareils').innerHTML = ''
   const appliances = getFilteredAppliances()
@@ -280,6 +231,66 @@ function appliancesTags() {
     document.querySelector('.filter_appareils').appendChild(sel)
     applianceTagEvent(appliances[i], sel)
   }
+}
+
+function applyTagsToOptions() {
+  ingredientsTags()
+  ustensilsTags()
+  appliancesTags()
+}
+
+// Allow clicks on elements from the list
+// and filter the recipes with the new element clicked on
+
+function ingredientTagEvent(ingredient, element) {
+  element.addEventListener('click', () => {
+    ingredients.push(ingredient)
+    addTagElementIngredient(ingredient, (value) => {
+      ingredients = ingredients.filter((i) => i !== value)
+    })
+    filterRecipes()
+  })
+}
+
+function ustensilTagEvent(ustensil, element) {
+  element.addEventListener('click', () => {
+    ustensils.push(ustensil)
+    addTagElementUstensil(ustensil, (value) => {
+      ustensils = ustensils.filter((i) => i !== value)
+    })
+    filterRecipes()
+  })
+}
+
+function applianceTagEvent(appliance, element) {
+  element.addEventListener('click', () => {
+    appliances.push(appliance)
+    addTagElementAppliance(appliance, (value) => {
+      appliances = appliances.filter((i) => i !== value)
+    })
+    filterRecipes()
+  })
+}
+
+// Allows to create a tag and delete it onclick and then filter the recipes
+
+function addTagElementIngredient(ingredient, callback) {
+  const tags = document.querySelector('#tags')
+  const elmt_container = document.createElement('div')
+  elmt_container.classList.add('ingredientList')
+  const element3 = document.createElement('li')
+  const img_close = 'assets/remove-icon.png'
+  const elmt_close = document.createElement('img')
+  elmt_close.setAttribute('src', img_close)
+  element3.innerText = ingredient
+  element3.addEventListener('click', () => {
+    elmt_container.remove()
+    callback(ingredient)
+    filterRecipes()
+  })
+  tags.appendChild(elmt_container)
+  elmt_container.appendChild(element3)
+  elmt_container.appendChild(elmt_close)
 }
 
 function addTagElementAppliance(appliance, callback) {
@@ -320,24 +331,7 @@ function addTagElementUstensil(ustensil, callback) {
   elmt_container.appendChild(elmt_close)
 }
 
-function addTagElementIngredient(ingredient, callback) {
-  const tags = document.querySelector('#tags')
-  const elmt_container = document.createElement('div')
-  elmt_container.classList.add('ingredientList')
-  const element3 = document.createElement('li')
-  const img_close = 'assets/remove-icon.png'
-  const elmt_close = document.createElement('img')
-  elmt_close.setAttribute('src', img_close)
-  element3.innerText = ingredient
-  element3.addEventListener('click', () => {
-    elmt_container.remove()
-    callback(ingredient)
-    filterRecipes()
-  })
-  tags.appendChild(elmt_container)
-  elmt_container.appendChild(element3)
-  elmt_container.appendChild(elmt_close)
-}
+//Showing or not the lists on input's focus
 
 const filterIngredientInput = document.querySelector(
   '#filter_ingredients input'
