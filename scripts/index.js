@@ -34,6 +34,7 @@ async function init() {
   displayData(recipes)
 }
 
+// Search from the ingredients'searchBar
 function InitIngredientTagForm() {
   const ingredientSearchBar = document.querySelector(
     '.filter__select--ingredients'

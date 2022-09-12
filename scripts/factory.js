@@ -1,7 +1,7 @@
 export function recipeFactory(data) {
   const { name, time, description } = data
 
-  function getUserCardDOM() {
+  function getRecipeCardDom() {
     const article = document.createElement('article')
     const picture = `assets/logolpp.png`
     const img_container = document.createElement('div')
@@ -52,7 +52,7 @@ export function recipeFactory(data) {
     return article
   }
 
-  return { getUserCardDOM }
+  return { getRecipeCardDom }
 }
 
 export async function displayData(recipes) {
@@ -66,7 +66,7 @@ export async function displayData(recipes) {
     recipeSection.innerHTML = ''
     recipes.forEach((recipe) => {
       const recipeModel = recipeFactory(recipe)
-      const userCardDOM = recipeModel.getUserCardDOM()
+      const userCardDOM = recipeModel.getRecipeCardDom()
       recipeSection.appendChild(userCardDOM)
     })
   }
