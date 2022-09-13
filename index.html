@@ -1,89 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link href="./css/style.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link
-  href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-  rel="stylesheet"
-  />
-  <script
-  src="https://kit.fontawesome.com/1f5306553e.js"
-  crossorigin="anonymous"
-  ></script>
-  <title>Les petits plats</title>
-</head>
-<body>
-  <header>
-    <img src="assets/logolpp.png" class="logo" alt="LPP logo" />
-  </header>
-  <main id="main">
-    <div class="research">
-      <form class="research_bar">
-        <input
-        class="research_bar_input"
-        placeholder="Rechercher une recette"
-        type="search"
-        name="query"
-        />
-        <button class="research_bar_submit" type="submit">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
-      
-      <ul id="tags"></ul>
-
-     
-          <!-- filters  -->
-
-      <section class="filter">
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
+  <head>
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/1f5306553e.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Les petits plats</title>
+  </head>
+  <body>
+    <header>
+      <img src="assets/logolpp.png" class="logo" alt="LPP logo" />
+    </header>
+    <main id="main">
+      <section class="research container">
+        <form class="research_bar">
           <input
-            class="filter__select filter__select--ingredients"
-            type="text"
-            value="Ingrédients"
-            placeholder="Rechercher un ingrédient"
+            class="research_bar_input"
+            placeholder="Rechercher une recette"
+            type="search"
+            name="query"
           />
-          <ul class="filter_ingredients filter_show"></ul>
-        </div>
+          <button class="research_bar_submit" type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
 
-      
+        <ul id="tags"></ul>
 
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
-          <input
-            class="filter__select filter__select--ustensiles"
-            type="text"
-            value="Ustensiles"
-            placeholder="Rechercher un ustensile"
-          />
-          <ul class="filter_ustensiles filter_show"></ul>
-        </div>
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
-          <input
-            class="filter__select filter__select--appareils"
-            type="text"
-            value="Appareils"
-            placeholder="Rechercher un appareil"
+        <!-- filters  -->
 
-          />
-          <ul class="filter_appareils filter_show"></ul>
+        <div class="filter">
+          <div
+            id="filter_ingredients"
+            class="filter__custom-select filter__select--ingredients"
+          >
+            <input
+              class="filter__select filter__select--ingredients"
+              type="text"
+              placeholder="Ingrédients"
+            />
+            <span class="filter__custom-arrow"></span>
+            <ul
+              class="filter_content filter_ingredients filter__select--ingredients"
+            ></ul>
+          </div>
+
+          <div
+            id="filter_ustensils"
+            class="filter__custom-select filter__select--ustensiles"
+          >
+            <input
+              class="filter__select filter__select--ustensiles"
+              type="text"
+              placeholder="Ustensiles"
+            />
+            <span class="filter__custom-arrow"></span>
+            <ul
+              class="filter_content filter_ustensiles filter__select--ustensiles"
+            ></ul>
+          </div>
+
+          <div
+            id="filter_appareils"
+            class="filter__custom-select filter__select--appareils"
+          >
+            <input
+              class="filter__select filter__select--appareils"
+              type="text"
+              placeholder="Appareils"
+            />
+            <span class="filter__custom-arrow"></span>
+            <ul
+              class="filter_content filter_appareils filter__select--appareils"
+            ></ul>
+          </div>
         </div>
       </section>
 
-    </div>
-
-      <section>
+      <section class="container">
         <div class="recipe_section"></div>
       </section>
     </main>
     <script type="module" src="scripts/index.js"></script>
-    
   </body>
-  </html>
-  
-  
+</html>

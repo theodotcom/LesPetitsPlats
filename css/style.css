@@ -1,3 +1,7 @@
+body {
+  font-family: "latoregular", sans-serif;
+}
+
 header img {
   display: block;
   margin-left: auto;
@@ -10,6 +14,11 @@ article {
   height: 350px;
 }
 
+.container {
+  max-width: 95%;
+  margin: auto;
+}
+
 .research {
   display: flex;
   flex-direction: column;
@@ -20,8 +29,6 @@ article {
   position: relative;
   overflow: hidden;
   margin-top: 16px;
-  padding-left: 28px;
-  padding-right: 28px;
 }
 
 .research_bar_input {
@@ -36,119 +43,16 @@ article {
   background: transparent;
   border: none;
   position: absolute;
-  right: 40px;
+  right: 10px;
   top: 0;
   height: 100%;
-}
-
-/* Dropdown Button */
-#dropbtn {
-  background-color: royalblue;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-#dropbtn1 {
-  background-color: #04aa6d;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-#dropbtn2 {
-  background-color: red;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-#dropbtn:hover,
-#dropbtn:focus {
-  background-color: rgb(42, 75, 173);
-}
-
-#dropbtn1:hover,
-#dropbtn1:focus {
-  background-color: #3e8e41;
-}
-
-#dropbtn2:hover,
-#dropbtn2:focus {
-  background-color: rgba(255, 0, 0, 0.699);
-}
-
-/* The search field */
-#myInput {
-  box-sizing: border-box;
-  background-image: url("searchicon.png");
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
-
-/* The search field when it gets focus/clicked on */
-#myInput:focus {
-  outline: 3px solid #ddd;
-}
-
-/* The container <div> - needed to position the dropdown content */
-#dropdown,
-#dropdown1,
-#dropdown2 {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-  display: block;
-}
-
-/* Dropdown Container */
-.dropdown_container {
-  display: flex;
 }
 
 .recipe_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
-  width: 95%;
-  margin: 20px auto;
+  margin-top: 20px;
 }
 
 .details_container {
@@ -178,36 +82,18 @@ ul {
   list-style: none;
 }
 
-#Ingredients {
-  background-color: #3282f7;
-}
-
-#Ustensiles {
-  background-color: #68d9a5;
-}
-
-#Appareils {
-  background-color: #ed6455;
-}
-
-/* Filters section */
 .filter {
-  display: none;
-}
-
-@media only screen and (min-width: 992px) {
-  .filter {
-    margin-top: 20px;
-    margin-left: 30px;
-    display: flex;
-    gap: 60px;
-  }
+  display: flex;
+  gap: 60px;
 }
 
 .filter__custom-select {
   position: relative;
   cursor: pointer;
   width: 153px;
+  display: flex;
+  border-radius: 10px;
+  transition: width .5s linear;
 }
 
 .filter__custom-select input[type="text"]::placeholder {
@@ -219,16 +105,13 @@ ul {
   border: none;
   color: #fff;
   width: 100%;
-  height: 69px;
   text-align: start;
-  padding-left: 20px;
   border-radius: 10px;
   font-size: var(--fs-18);
   cursor: pointer;
-}
-
-.filter__select:focus {
-  outline: none;
+  padding: 24px;
+  display: block;
+  outline: transparent;
 }
 
 .filter__select--ingredients {
@@ -244,92 +127,16 @@ ul {
 }
 
 .filter__custom-arrow {
-  position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 4rem;
   display: flex;
   align-items: center;
   height: 100%;
   pointer-events: none;
-}
-
-.filter__custom-arrow--rotate {
-  transform: rotate(180deg);
+  position: absolute;
+  right: 5px;
 }
 
 .filter__custom-arrow::before {
   content: url("../assets/dropdown-icon-down.png");
-}
-
-.filter__custom-menu {
-  display: none;
-}
-
-.filter__show {
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 65px;
-  color: #fff;
-  width: 100%;
-  max-height: 360px;
-  overflow: hidden;
-  border-bottom-left-radius: var(--br-5);
-  border-bottom-right-radius: var(--br-5);
-}
-
-.filter__custom-menu--primary {
-  background: #3282f7;
-}
-
-.filter__custom-menu--success {
-  background: blue;
-}
-
-.filter__custom-menu--danger {
-  background: blue;
-}
-
-.filter__custom-option {
-  width: 33%;
-  padding: 4px 0 4px 20px;
-  font-size: var(--fs-18);
-  /* color: rgb(49, 49, 49); */
-  /* text-transform: capitalize; */
-}
-
-.filter__custom-option--enable {
-  width: 33%;
-  padding: 4px 0 4px 20px;
-  font-size: var(--fs-18);
-  color: rgb(165, 162, 162);
-  pointer-events: none;
-}
-
-.filter__custom-option--enable:hover {
-  cursor: default;
-}
-
-.filter__custom-option--enable::after {
-  content: "";
-  width: 0px;
-  height: 1px;
-  display: block;
-  background: grey;
-  transition: 300ms;
-}
-.filter__custom-option::after {
-  content: "";
-  width: 0px;
-  height: 1px;
-  display: block;
-  background: #fff;
-  transition: 300ms;
-}
-
-.filter__custom-option:hover::after {
-  width: 15%;
 }
 
 .ingredient_list {
@@ -381,54 +188,49 @@ article {
   display: block;
 }
 
-.filter_ingredients {
-  background: #3282f7;
-  display: none;
-  justify-items: start;
-  align-items: center;
-
-  width: 32em;
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 18em;
-  overflow: hidden;
+.filter_content {
+  /*display: none;*/
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
+  top: 48px;
+  color: #fff;
+  width: 100%;
+  max-height: 348px;
+  overflow: auto;
+  left: 0;
+  border-radius: 0 10px 10px 10px;
+  box-sizing: border-box;
+
+  height: 0;
+  padding: 0;
 }
 
-.filter_appareils {
-  background: #3e8e41;
-  display: none;
-  position: absolute;
-  grid-template-columns: 1fr 1fr;
-  width: 18em;
+.filter_show {
+  width: 90%;
 }
 
-.filter_ustensiles {
-  background: #ed6455;
-  display: none;
-  position: absolute;
-  grid-template-columns: 1fr 1fr;
-  height: 18em;
-  overflow: hidden;
-  width: 19em;
+.filter_show > .filter_content{
+  padding: 16px;
+  height: auto;
 }
 
 .filter_ingredients li {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  width: 31%;
   color: white;
-  margin-left: -20px;
+  padding: 4px
 }
 
 .filter_ustensiles li {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  width: 31%;
+  padding: 12px 0px 4px 23px;
   color: white;
   margin-left: -20px;
 }
 
 .filter_appareils li {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  width: 31%;
+  padding: 12px 0px 4px 23px;
   color: white;
   margin-left: -20px;
 }
@@ -438,6 +240,7 @@ article {
   flex-wrap: wrap;
   margin-top: 25px;
   gap: 10px;
+  padding: 0;
 }
 
 #tags div {
@@ -446,10 +249,36 @@ article {
   border-radius: 5px;
   color: #fff;
   padding: 10px 20px;
+}
+
+#tags .ingredientList{
   background: #3282f7;
+}
+
+#tags .applianceList{
+  background: #008000;
+}
+
+#tags .ustensilList{
+  background: #f00;
 }
 
 #tags div li {
   margin-right: 13px;
   text-transform: capitalize;
+}
+
+.cards__no-recipes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 200px;
+  z-index: -1;
+}
+
+.cards__no-recipes-text {
+  font-weight: bold;
+  font-size: var(--fs-18);
+  color: rgb(49, 49, 49);
 }
