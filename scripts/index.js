@@ -117,7 +117,7 @@ function InitTagsForms() {
 function filterRecipes() {
   const recipes = allRecipes.filter((recipe) => {
     return (
-      (filterByName(recipe) || filterByDescription(recipe)) &&
+      filterByQuery(recipe) &&
       filterByIngredient(recipe) &&
       filterByUstensil(recipe) &&
       filterByAppliance(recipe)
@@ -129,6 +129,28 @@ function filterRecipes() {
 }
 
 //Each filter
+
+function filterByQuery(recipe) {
+  return (
+    filterByName(recipe) ||
+    filterByDescription(recipe) ||
+    filterByIngredientQuery(recipe)
+  )
+}
+
+function filterByIngredientQuery(recipe) {
+  if (query === '') {
+    return true
+  }
+
+  return (
+    recipe.ingredients.filter((ingredient) => {
+      return ingredient.ingredient
+        .toLowerCase()
+        .includes(query.toLocaleLowerCase())
+    }).length > 0
+  )
+}
 
 function filterByIngredient(recipe) {
   if (ingredients.length === 0) {
