@@ -116,21 +116,45 @@ function InitTagsForms() {
 //Main filter
 function filterRecipes() {
   const recipes = []
-   for (let i = 0; i < allRecipes.length; i++) {
-       const recipe = allRecipes[i]
-       if ((filterByName(recipe) || filterByDescription(recipe)) &&
-       filterByIngredient(recipe) &&
-       filterByUstensil(recipe) &&
-       filterByAppliance(recipe)) {
-           recipes.push(recipe)
-       }
+  for (let i = 0; i < allRecipes.length; i++) {
+    const recipe = allRecipes[i]
+    if (
+      filterByQuery(recipe) &&
+      filterByIngredient(recipe) &&
+      filterByUstensil(recipe) &&
+      filterByAppliance(recipe)
+    ) {
+      recipes.push(recipe)
+    }
   }
-  filteredRecipes = recipes;
-  applyTagsToOptions();
-  displayData(recipes);
+  filteredRecipes = recipes
+  applyTagsToOptions()
+  displayData(recipes)
 }
 
 //Each filter
+
+function filterByQuery(recipe) {
+  return (
+    filterByName(recipe) ||
+    filterByDescription(recipe) ||
+    filterByIngredientQuery(recipe)
+  )
+}
+
+function filterByIngredientQuery(recipe) {
+  if (query === '') {
+    return true
+  }
+
+  return (
+    recipe.ingredients.filter((ingredient) => {
+      return ingredient.ingredient
+        .toLowerCase()
+        .includes(query.toLocaleLowerCase())
+    }).length > 0
+  )
+}
 
 function filterByIngredient(recipe) {
   if (ingredients.length === 0) {
@@ -357,5 +381,3 @@ const filterAppareilsInput = document.querySelector('#filter_appareils input')
 )
 
 init()
-
-
